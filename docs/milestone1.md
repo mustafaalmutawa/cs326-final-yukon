@@ -7,21 +7,21 @@ Depending on whether the user is a seller or buyer, sliglhly different data inte
   * name
   * password
   * location
-⋅⋅* Add a listing
-  ⋅⋅* images
-  ⋅⋅* condition
-  ⋅⋅* brand
-  ⋅⋅* category
-  ⋅⋅* price
-  ⋅⋅* tags
-  ⋅⋅* shipping availability
-  ⋅⋅* pickup availability
-⋅⋅* View all listings (listing page)
-⋅⋅* Filter the lisiting page based on specific critera: location, price, condition, category, etc.
-⋅⋅* View a listed item (item page)
-⋅⋅* Add an item to cart / Buy an item
-⋅⋅* [Buyer] comment on an item
-⋅⋅* [Seller] reply to a comment
+* Add a listing
+ * images
+ * condition
+ * brand
+ * category
+ * price
+ * prefered payment method
+ * shipping availability
+ * pickup availability
+* View all listings (listing page)
+* Filter the lisiting page based on specific critera: location, price, condition, category, etc.
+* View a listed item (item page)
+* Add an item to cart / Buy an item
+* [Buyer] comment on an item
+* [Seller] reply to a comment
 
 
 # WireFrames    
