@@ -2,11 +2,11 @@
 
 Depending on whether the user is a seller or buyer, sliglhly different data interactions can happen. But any user——who can be both a seller or buyer—can do the following:
 
-⋅⋅* Create a user profile
-  ⋅⋅* email address
-  ⋅⋅* name
-  ⋅⋅* password
-  ⋅⋅* location
+* Create a user profile
+  * email address
+  * name
+  * password
+  * location
 ⋅⋅* Add a listing
   ⋅⋅* images
   ⋅⋅* condition
