@@ -8,14 +8,14 @@ Depending on whether the user is a seller or buyer, sliglhly different data inte
   * password
   * location
 * Add a listing
- * images
- * condition
- * brand
- * category
- * price
- * prefered payment method
- * shipping availability
- * pickup availability
+  * images
+  * condition
+  * brand
+  * category
+  * price
+  * prefered payment method
+  * shipping availability
+  * pickup availability
 * View all listings (listing page)
 * Filter the lisiting page based on specific critera: location, price, condition, category, etc.
 * View a listed item (item page)
