@@ -38,8 +38,18 @@ also a cart icon, which takes the user to their shopping cart. Next to the cart 
 
 ## Sign up/Login
 
-Below are the pages for signing up or logging in. They are simple and easy to follow. The user will be prompted to sign up or, if already has an account, login.
+Below are the pages for signing up (joining) or logging in. They are simple and easy to follow. The user will be prompted to sign up or, if already has an account, login.
 
 ![Sign up page@2x](https://user-images.githubusercontent.com/40669187/159384097-80a55cf1-cf7a-4a37-8058-3855a55bcf5c.png)
 
 ![Login page@2x](https://user-images.githubusercontent.com/40669187/159384113-a0ffb05d-564b-48e1-b4a8-09fcd5555577.png)
+
+## User Profile
+
+The user profile page can either be viewed by the original user or the public (other users). Therefore, two slightly different pages are needed. Viewed by other users, the user proflie will show the user's information (name, photo, bio); number of sales, followers, and following; the user's evaluation (rating and feedback); and the users's listings. In contrast, when users view their personal pages, they will have more privileges. Specifically, they will have editing ability and the option to create a new listing.
+
+![user profile 2 0 (public view) - User Profile (public view)@2x](https://user-images.githubusercontent.com/40669187/159386938-f54f8f14-d3bc-41ac-b506-ddd35fcda440.png)
+
+![user profile 2 0 (user view) - User Profile (user view)@2x](https://user-images.githubusercontent.com/40669187/159386942-53626ed8-bb8f-4817-b335-dcf30ecb6f11.png)
+
+
