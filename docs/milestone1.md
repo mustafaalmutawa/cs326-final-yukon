@@ -38,7 +38,7 @@ also a cart icon, which takes the user to their shopping cart. Next to the cart 
 
 ## Sign up/Login
 
-Below are the pages for signing up (joining) or logging in. They are simple and easy to follow. The user will be prompted to sign up or, if already has an account, login.
+Below are the pages for signing up (joining) or logging in. They are simple and easy to follow. The user will be prompted to sign up or, if already has an account, login. Sign up procedure is fairly simple where you will be required to give a username email and password to create an account.
 
 ![Sign up page@2x](https://user-images.githubusercontent.com/40669187/159384097-80a55cf1-cf7a-4a37-8058-3855a55bcf5c.png)
 
