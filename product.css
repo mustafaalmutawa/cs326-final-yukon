@@ -4,6 +4,10 @@
   padding-right: 50px;
 }
 
-.sellertile.container {
+.container {
   padding-top: 25px;
+}
+
+#sellertile, #product-info {
+  padding-left: 35px;
 }
