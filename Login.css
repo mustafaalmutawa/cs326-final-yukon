@@ -1,3 +1,15 @@
 body {
     background-image: url('https://i0.wp.com/saintpolicesystems.com/wp-content/uploads/2018/06/blue-light-backgrounds-background-opera-image-graphics-community-speeddials.jpg?fit=1200%2C750g');
   }
+
+.container-md{
+  max-width :500px; 
+  max-height:200px; 
+  margin:auto;
+}
+.text-center{
+  padding: 35px
+}
+.container{
+  margin-left:180px
+}
