@@ -56,4 +56,15 @@ The user profile page can either be viewed by the original user or the public (o
 
 ![user profile 2 0 (user view) - User Profile (user view)@2x](https://user-images.githubusercontent.com/40669187/159386942-53626ed8-bb8f-4817-b335-dcf30ecb6f11.png)
 
+## Product Page
+
+The product page is where more details on the item listed for sale can be found. For example, it includes: the condition of the item, preferred payment method, shipping and pickup availability, as well as information on the seller. The page also allows for user comments. Most importanatly, the option to buy the item is placed in the product page.
+
+![product page 3 0 - Product Page@2x](https://user-images.githubusercontent.com/40669187/160158352-a47b2f4b-6a46-4a73-bd6f-2102b4575e5e.png)
+
+## Create Listing
+
+This page allows the user to create a new listing. It asks for basic information on the item, as well as other additional details such as preferred payment and shipping availability. Most of the fields are required and are marked as such by the asterisk symbol. At the bottom right there is a create listing button, which the user can click after completing all the required fields.
+
+![create a listing - Create Listing @2x](https://user-images.githubusercontent.com/40669187/160159565-0172d6f2-9f65-4bbb-9f64-624398e5f92b.png)
 
