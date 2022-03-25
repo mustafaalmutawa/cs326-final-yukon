@@ -4,8 +4,23 @@
   padding-right: 50px;
 }
 
-.container {
+.info-group {
   padding-top: 25px;
+}
+
+.product-heading, .product-title, .buy-product {
+  padding-left:100px;
+  padding-top: 15px;
+}
+
+.product-description {
+  padding-left:100px;
+  padding-top: 50px;
+}
+
+#description {
+  padding-left:25px;
+  font-size: large;
 }
 
 #sellertile, #product-info {
