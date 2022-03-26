@@ -102,7 +102,7 @@ The following are screenshots of our current HTML pages, modeled on the WireFram
 
 We worked collaboratively during this phase, with each's work receiving feedback from the whole team. Below is the breakdown of what each member worked on significantly.
 
-Mustafa Almutawa: Create Listing and User Profile pages, as well as writing the milestone1.md file.
+Mustafa Almutawa: Created the user profile and create listing pages, as well as writing the milestone1.md file.
 
 Alex Rohrberg: Created the navigation bar, product page, and worked on the registration page.
 
