@@ -106,6 +106,6 @@ Mustafa Almutawa: Create Listing and User Profile pages, as well as writing the 
 
 Alex Rohrberg: Created the navigation bar, product page, and worked on the registration page.
 
-Tatyana Edozie:
+Tatyana Edozie: Created wireframe for the homepage, worked on listings part of the homepage.
 
 Nitish Bodicharla: Worked on Sign Up Page, Login page along with part of the Homepage
