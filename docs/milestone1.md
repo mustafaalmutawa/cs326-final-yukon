@@ -104,4 +104,4 @@ Alex Rohrberg:
 
 Tatyana Edozie:
 
-Nitish Bodicharla:
+Nitish Bodicharla: Worked on Sign Up Page, Login page along with part of the Homepage
