@@ -77,15 +77,30 @@ The following are screenshots of our current HTML pages, modeled on the WireFram
 ## Home Page
 <img width="1439" alt="Screen Shot 2022-03-26 at 10 57 18 AM" src="https://user-images.githubusercontent.com/40669187/160245227-28e56afa-3075-476b-bc57-f2f91070cd20.png">
 
+
 ## Login
 <img width="1440" alt="Screen Shot 2022-03-26 at 10 57 26 AM" src="https://user-images.githubusercontent.com/40669187/160245234-63363eef-484e-4783-8cf3-18035bca773c.png">
+
 
 ## User Profile
 <img width="1440" alt="Screen Shot 2022-03-26 at 10 57 35 AM" src="https://user-images.githubusercontent.com/40669187/160245248-62ad9ca9-da8c-4a00-9fa5-be9c2b0cc157.png">
 
+
 ## Product Page
 <img width="1439" alt="Screen Shot 2022-03-26 at 10 57 46 AM" src="https://user-images.githubusercontent.com/40669187/160245255-aeca918c-4c25-4701-b6e6-e4a64313292d.png">
+
 
 ## Create Listing
 <img width="1440" alt="Screen Shot 2022-03-26 at 10 57 55 AM" src="https://user-images.githubusercontent.com/40669187/160245261-8e35f609-da3c-452a-822f-8022f343ca45.png">
 
+
+# Breakdown of Labor    
+
+### Mustafa Almutawa: 
+Create Listing and User Profile pages, as well as writing the milestone1.md file.
+
+### Alex Rohrberg
+
+### Tatyana Edozie
+
+### Nitish Bodicharla
