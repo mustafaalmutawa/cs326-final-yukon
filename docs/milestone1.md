@@ -82,6 +82,10 @@ The following are screenshots of our current HTML pages, modeled on the WireFram
 <img width="1440" alt="Screen Shot 2022-03-26 at 10 57 26 AM" src="https://user-images.githubusercontent.com/40669187/160245234-63363eef-484e-4783-8cf3-18035bca773c.png">
 
 
+## Registration
+![registration](https://user-images.githubusercontent.com/92342721/160258630-3bb0d73e-9faf-4232-88b0-0bab6e58df45.png)
+
+
 ## User Profile
 <img width="1440" alt="Screen Shot 2022-03-26 at 10 57 35 AM" src="https://user-images.githubusercontent.com/40669187/160245248-62ad9ca9-da8c-4a00-9fa5-be9c2b0cc157.png">
 
