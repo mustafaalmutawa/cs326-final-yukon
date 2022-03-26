@@ -96,11 +96,12 @@ The following are screenshots of our current HTML pages, modeled on the WireFram
 
 # Breakdown of Labor    
 
-### Mustafa Almutawa: 
-Create Listing and User Profile pages, as well as writing the milestone1.md file.
+We worked collaboratively during this phase, with each's work receiving feedback from the whole team. Below is the breakdown of what each member worked on significantly.
 
-### Alex Rohrberg
+Mustafa Almutawa: Create Listing and User Profile pages, as well as writing the milestone1.md file.
 
-### Tatyana Edozie
+Alex Rohrberg:
 
-### Nitish Bodicharla
+Tatyana Edozie:
+
+Nitish Bodicharla:
