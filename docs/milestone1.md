@@ -100,7 +100,7 @@ We worked collaboratively during this phase, with each's work receiving feedback
 
 Mustafa Almutawa: Create Listing and User Profile pages, as well as writing the milestone1.md file.
 
-Alex Rohrberg:
+Alex Rohrberg: Created the navigation bar, product page, and worked on the registration page.
 
 Tatyana Edozie:
 
