@@ -2,7 +2,7 @@ import express from 'express';
 import logger from 'morgan';
 
 async function getProduct(response, pid) {
-  response.json({ info: `Product found with pid ${pid}` });
+  response.json(`Product found with pid ${pid}`);
 }
 
 async function register(response, body) {
@@ -10,7 +10,15 @@ async function register(response, body) {
 }
 
 async function login(response, body) {
-  response.json({usrname: body.usernam, password: "welcome!"})
+  response.json({username: body.username, password: "welcome!"})
+}
+
+async function createProduct(response, body) {
+  response.json(body);
+}
+
+async function buyProduct(response, body) {
+  response.json(body);
 }
 
 const app = express(); 
@@ -38,6 +46,16 @@ app.post('/register', async (request, response) => {
   console.log(request.body);
   const details = request.body;
   register(response, details);
+});
+
+app.post('/product', async (request, response) => {
+  const details = request.body;
+  createProduct(response, details);
+});
+
+app.post('/buy', async (request, response) => {
+  const details = request.body;
+  buyProduct(response, details);
 });
 
 app.get('*', async (request, response) => {
