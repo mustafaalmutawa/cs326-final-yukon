@@ -1,16 +1,22 @@
 import express from 'express';
 import logger from 'morgan';
 
+import { faker } from '@faker-js/faker';
+
+const fakeObj = {"name": faker.name.firstName(), "phone number": faker.phone.phoneNumber()}
+
 async function getProduct(response, pid) {
   response.json(`Product found with pid ${pid}`);
 }
 
 async function register(response, body) {
-  response.json({username: body.username, password: "*****"});
+  const fakeObj = {"name": faker.name.firstName(), "phone number": faker.phone.phoneNumber()}
+  response.json(fakeObj);
 }
 
 async function login(response, body) {
-  response.json({username: body.username, password: "welcome!"})
+  const fakeObj = {"name": faker.name.firstName(), "phone number": faker.phone.phoneNumber()}
+  response.json(fakeObj)
 }
 
 async function createProduct(response, body) {
@@ -34,7 +40,6 @@ app.get('/product', async (request, response) => {
 });
 
 app.post('/register', async (request, response) => {
-  console.log(request.body);
   register(response, request.body);
 });
 
