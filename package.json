@@ -1,0 +1,26 @@
+{
+  "name": "cs326-final-yukon",
+  "version": "1.0.0",
+  "description": "USell App",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mustafaalmutawa/cs326-final-yukon.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mustafaalmutawa/cs326-final-yukon/issues"
+  },
+  "homepage": "https://github.com/mustafaalmutawa/cs326-final-yukon#readme",
+  "dependencies": {
+    "express": "^4.17.3",
+    "morgan": "^1.10.0"
+  }
+}
