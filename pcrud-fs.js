@@ -3,10 +3,9 @@ import logger from 'morgan';
 
 import { faker } from '@faker-js/faker';
 
-const fakeObj = {"name": faker.name.firstName(), "phone number": faker.phone.phoneNumber()}
-
 async function getProduct(response, pid) {
-  response.json(`Product found with pid ${pid}`);
+  const fakePid = Math.floor(Math.random()*90000) + 10000;
+  response.json(`Product found with pid ${fakePid}`);
 }
 
 async function register(response, body) {
@@ -19,12 +18,16 @@ async function login(response, body) {
   response.json(fakeObj)
 }
 
-async function createProduct(response, body) {
-  response.json(body);
+async function createProduct(response, body) { 	
+  const fakePid = Math.floor(Math.random()*90000) + 10000;
+  const fakeObj = {"name": faker.commerce.product(), "pid": fakePid, "brand": faker.company.companyName()}
+  response.json(fakeObj);
 }
 
 async function buyProduct(response, body) {
-  response.json(body);
+  const fakePid = Math.floor(Math.random()*90000) + 10000;
+  const fakeObj = {"name": faker.commerce.product(), "pid": fakePid, "brand": faker.company.companyName()}
+  response.json(fakeObj);
 }
 
 const app = express(); 
