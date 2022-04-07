@@ -13,7 +13,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use('/client', express.static('client'));
 
 app.get('/product', async (request, response) => {
-  const details = request.body;
+  const details = request.query;
   getProduct(response, details.pid);
 });
 
