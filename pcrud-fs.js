@@ -1,38 +1,99 @@
 import express from 'express';
 import logger from 'morgan';
-
+import { readFile, writeFile } from 'fs/promises';
 import { faker } from '@faker-js/faker';
 
-async function getProduct(response, pid) {
-  const fakePid = Math.floor(Math.random()*90000) + 10000;
-  response.json(`Product found with pid ${fakePid}`);
+let products = [];
+let users = [];
+
+const product_database = 'products.json';
+const user_database = 'users.json';
+
+async function reload(filename) {
+    try {
+        const data = await readFile(filename, { encoding: 'utf8' });
+        if (data === '')
+            return [];
+        else
+            return JSON.parse(data);
+    } 
+    catch (err) {
+        console.log(err);
+    }
+}
+
+async function save(json, filename) { 
+    try {
+        const data = JSON.stringify(json);
+        await writeFile(filename, data, { encoding: 'utf8' });
+    } 
+    catch (err) {
+        console.log(err);
+  }
+}
+
+async function itemExists(json, id) {
+    for (const item of json){
+        if (item['id'] === id){
+            return true;
+        }
+    }
+    return false;
+}
+
+function getIndex(json, id) { 
+    for (const [index, item] of json.entries()){
+        if (item['id'] === id){
+          return index;
+        }
+    }
+    return -1;
+}
+
+async function getProduct(response, id) {
+    products = reload(product_database);
+    index = getIndex(products, id);
+
+    if (index !== -1) 
+        response.status(200).json(products[index]);  
+    else
+        response.status(404).json({ error: 'Product id not found' });
 }
 
 async function register(response, body) {
-  const fakeObj = {"name": faker.name.firstName(), "phone number": faker.phone.phoneNumber()}
-  response.json(fakeObj);
+    const fakeId = Math.floor(Math.random()*90000) + 10000;
+    const fakeObj = {"id": fakeId, "name": faker.name.firstName(), "phone number": faker.phone.phoneNumber()}   
+    users.push(fakeObj)
+    save(users, user_database);
+    response.json(fakeObj);
 }
 
 async function login(response, body) {
-  const fakeObj = {"name": faker.name.firstName(), "phone number": faker.phone.phoneNumber()}
-  response.json(fakeObj)
+    const fakeObj = {"name": faker.name.firstName(), "phone number": faker.phone.phoneNumber()}
+    response.json(fakeObj)
 }
 
 async function createProduct(response, body) { 	
-  const fakePid = Math.floor(Math.random()*90000) + 10000;
-  const fakeObj = {"name": faker.commerce.product(), "pid": fakePid, "brand": faker.company.companyName()}
-  response.json(fakeObj);
+    const fakeId = Math.floor(Math.random()*90000) + 10000;
+    const fakeObj = {"id" : fakeId, "name": faker.commerce.product(), "brand": faker.company.companyName(), "price": faker.finance.amount()}
+    products.push(fakeObj);
+    save(products, product_database);
+    response.json(fakeObj);
 }
 
 async function buyProduct(response, body) {
-  const fakePid = Math.floor(Math.random()*90000) + 10000;
-  const fakeObj = {"name": faker.commerce.product(), "pid": fakePid, "brand": faker.company.companyName()}
-  response.json(fakeObj);
+    const fakeId = Math.floor(Math.random()*90000) + 10000;
+    const fakeObj = {"id": fakeId, "name": faker.commerce.product(), "brand": faker.company.companyName(), "price": faker.finance.amount()}
+    response.json(fakeObj);
 }
 
-async function getProfile(response, uid) {
-    const fakeUid = Math.floor(Math.random()*90000) + 10000;
-    response.json(`User profile found with uid ${fakeUid}`);
+async function getProfile(response, id) {
+    const fakeId = Math.floor(Math.random()*90000) + 10000;
+    response.json(`User profile found with id ${fakeId}`);
+}
+
+async function deleteProduct(response, id) {
+    
 }
 
 const app = express(); 
@@ -44,7 +105,7 @@ app.use('/client', express.static('client'));
 
 app.get('/product', async (request, response) => {
   const details = request.query;
-  getProduct(response, details.pid);
+  getProduct(response, details.id);
 });
 
 app.post('/register', async (request, response) => {
@@ -73,7 +134,7 @@ app.post('/buy', async (request, response) => {
 
 app.get('/profile', async (request, response) => {
     const details = request.query;
-    getProfile(response, details.uid);
+    getProfile(response, details.id);
 });
 
 app.get('*', async (request, response) => {
