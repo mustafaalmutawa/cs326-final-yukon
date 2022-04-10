@@ -30,6 +30,11 @@ async function buyProduct(response, body) {
   response.json(fakeObj);
 }
 
+async function getProfile(response, uid) {
+    const fakeUid = Math.floor(Math.random()*90000) + 10000;
+    response.json(`User profile found with uid ${fakeUid}`);
+}
+
 const app = express(); 
 const port = 3000;
 app.use(logger('dev'));
@@ -66,6 +71,11 @@ app.post('/buy', async (request, response) => {
   buyProduct(response, details);
 });
 
+app.get('/profile', async (request, response) => {
+    const details = request.query;
+    getProfile(response, details.uid);
+});
+
 app.get('*', async (request, response) => {
   response.status(404).send(`Not found: ${request.path}`);
 });
@@ -73,3 +83,4 @@ app.get('*', async (request, response) => {
 app.listen(port, () => {
   console.log(`Server started on port ${port}`);
 });
+
