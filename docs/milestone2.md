@@ -17,3 +17,6 @@ This endpoint is for existing users. It will work similarly to the /register end
 <strong>/buy</strong>
 An endpoint via POST that a user will use to “buy” items. The data for checkout and the product being purchased will be contained in the JSON body of the request.
 
+<strong>/profile?uid</strong>
+This endpoint uses a GET request to retrieve the user profile HTML page for the user with the unique user id.
+
