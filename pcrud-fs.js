@@ -5,10 +5,24 @@ import { faker } from '@faker-js/faker';
 
 let products = [];
 let users = [];
-
+let productId = [];
+let Userid = [];
 const product_database = 'products.json';
 const user_database = 'users.json';
+const product_ids = 'product-ids.json';
+const user_ids = 'user-ids.json';
 
+function createfakeid(array,filename){
+    array = await reload(filename);
+    let fakeId = Math.floor(Math.random()*90000) + 10000;
+    while(array.includes(fakeId)){
+        fakeId = Math.floor(Math.random()*90000) + 10000
+    }
+    array.push(fakeId);
+    await save(array,filename)
+    return fakeId;
+
+}
 async function reload(filename) {
     try {
         const data = await readFile(filename, { encoding: 'utf8' });
@@ -62,7 +76,7 @@ async function getProduct(response, id) {
 
 async function register(response, body) {
     users = await reload(user_database);
-    const fakeId = Math.floor(Math.random()*90000) + 10000;
+    const fakeId = createfakeid(Userid,user_ids);
     const fakeObj = {"id": fakeId, "name": faker.name.firstName(), "phone number": faker.phone.phoneNumber()}   
     users.push(fakeObj);
     await save(users, user_database);
@@ -76,7 +90,7 @@ async function login(response, body) {
 
 async function createProduct(response, body) { 	
     products = await reload(product_database);
-    const fakeId = Math.floor(Math.random()*90000) + 10000;
+    const fakeId = createfakeid(productId,product_ids);
     const fakeObj = {"id" : fakeId, "name": faker.commerce.product(), "brand": faker.company.companyName(), "price": faker.finance.amount()}
     products.push(fakeObj);
     await save(products, product_database);
@@ -84,7 +98,7 @@ async function createProduct(response, body) {
 }
 
 async function buyProduct(response, body) {
-    const fakeId = Math.floor(Math.random()*90000) + 10000;
+    const fakeId = createfakeId(productId,product_ids);
     const fakeObj = {"id": fakeId, "name": faker.commerce.product(), "brand": faker.company.companyName(), "price": faker.finance.amount()}
     //deleteProduct(response, fakeId)
     response.status(200).json(fakeObj);
