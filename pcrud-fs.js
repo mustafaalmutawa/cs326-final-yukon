@@ -65,12 +65,12 @@ async function register(response, body) {
     const fakeObj = {"id": fakeId, "name": faker.name.firstName(), "phone number": faker.phone.phoneNumber()}   
     users.push(fakeObj)
     save(users, user_database);
-    response.json(fakeObj);
+    response.status(200).json(fakeObj);
 }
 
 async function login(response, body) {
     const fakeObj = {"name": faker.name.firstName(), "phone number": faker.phone.phoneNumber()}
-    response.json(fakeObj)
+    response.status(200).json(fakeObj)
 }
 
 async function createProduct(response, body) { 	
@@ -78,22 +78,47 @@ async function createProduct(response, body) {
     const fakeObj = {"id" : fakeId, "name": faker.commerce.product(), "brand": faker.company.companyName(), "price": faker.finance.amount()}
     products.push(fakeObj);
     save(products, product_database);
-    response.json(fakeObj);
+    response.status(200).json(fakeObj);
 }
 
 async function buyProduct(response, body) {
     const fakeId = Math.floor(Math.random()*90000) + 10000;
     const fakeObj = {"id": fakeId, "name": faker.commerce.product(), "brand": faker.company.companyName(), "price": faker.finance.amount()}
-    response.json(fakeObj);
+    //deleteProduct(response, fakeId)
+    response.status(200).json(fakeObj);
 }
 
 async function getProfile(response, id) {
-    const fakeId = Math.floor(Math.random()*90000) + 10000;
-    response.json(`User profile found with id ${fakeId}`);
+    users = reload(user_database);
+    index = getIndex(users, id);
+
+    if (index !== -1) 
+        response.status(200).json(users[index]);  
+    else
+        response.status(404).json({ error: 'User id not found' });
 }
 
 async function deleteProduct(response, id) {
-    
+    products = reload(product_database);
+    const index = getIndex(products, id);
+
+    if(index == -1){   
+        response.status(404).json({ error: 'Product id not found' });
+    }
+    else {
+        products.splice(index, 1);
+        save(products, product_database);
+        response.status(200).json("Product successfully deleted");
+    }
+}
+
+async function dump(response, database) {
+    let json = reload(database);
+    if (database === product_database)
+        products = json;
+    else if (database === user_database)
+        users = json;
+    response.status(200).json(json);
 }
 
 const app = express(); 
@@ -104,37 +129,47 @@ app.use(express.urlencoded({ extended: false }));
 app.use('/client', express.static('client'));
 
 app.get('/product', async (request, response) => {
-  const details = request.query;
-  getProduct(response, details.id);
+    const details = request.query;
+    getProduct(response, details.id);
 });
 
 app.post('/register', async (request, response) => {
-  register(response, request.body);
+    register(response, request.body);
 });
 
 app.post('/login', async (request, response) => {
-  login(response, request.body);
+    login(response, request.body);
 });
 
 app.post('/register', async (request, response) => {
-  console.log(request.body);
-  const details = request.body;
-  register(response, details);
+    console.log(request.body);
+    const details = request.body;
+    register(response, details);
 });
 
 app.post('/product', async (request, response) => {
-  const details = request.body;
-  createProduct(response, details);
+    const details = request.body;
+    createProduct(response, details);
 });
 
 app.post('/buy', async (request, response) => {
-  const details = request.body;
-  buyProduct(response, details);
+    const details = request.body;
+    buyProduct(response, details);
 });
 
 app.get('/profile', async (request, response) => {
     const details = request.query;
     getProfile(response, details.id);
+});
+
+app.delete('/product/delete', async (request, response) => {
+    const details = request.query;
+    deleteProduct(response, details.id);
+});
+
+app.get('/dump', async (request, response) => {
+    const details = request.query;
+    dump(response, details.database);
 });
 
 app.get('*', async (request, response) => {
