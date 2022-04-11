@@ -34,7 +34,7 @@ async function save(json, filename) {
 
 async function itemExists(json, id) {
     for (const item of json){
-        if (item['id'] === id){
+        if (String(item['id']) === id){
             return true;
         }
     }
@@ -43,7 +43,7 @@ async function itemExists(json, id) {
 
 function getIndex(json, id) { 
     for (const [index, item] of json.entries()){
-        if (item['id'] === id){
+        if (String(item['id']) === id){
           return index;
         }
     }
@@ -51,8 +51,8 @@ function getIndex(json, id) {
 }
 
 async function getProduct(response, id) {
-    products = reload(product_database);
-    index = getIndex(products, id);
+    products = await reload(product_database);
+    const index = getIndex(products, id);
 
     if (index !== -1) 
         response.status(200).json(products[index]);  
@@ -61,10 +61,11 @@ async function getProduct(response, id) {
 }
 
 async function register(response, body) {
+    users = await reload(user_database);
     const fakeId = Math.floor(Math.random()*90000) + 10000;
     const fakeObj = {"id": fakeId, "name": faker.name.firstName(), "phone number": faker.phone.phoneNumber()}   
-    users.push(fakeObj)
-    save(users, user_database);
+    users.push(fakeObj);
+    await save(users, user_database);
     response.status(200).json(fakeObj);
 }
 
@@ -74,10 +75,11 @@ async function login(response, body) {
 }
 
 async function createProduct(response, body) { 	
+    products = await reload(product_database);
     const fakeId = Math.floor(Math.random()*90000) + 10000;
     const fakeObj = {"id" : fakeId, "name": faker.commerce.product(), "brand": faker.company.companyName(), "price": faker.finance.amount()}
     products.push(fakeObj);
-    save(products, product_database);
+    await save(products, product_database);
     response.status(200).json(fakeObj);
 }
 
@@ -89,8 +91,8 @@ async function buyProduct(response, body) {
 }
 
 async function getProfile(response, id) {
-    users = reload(user_database);
-    index = getIndex(users, id);
+    users = await reload(user_database);
+    const index = getIndex(users, id);
 
     if (index !== -1) 
         response.status(200).json(users[index]);  
@@ -99,7 +101,7 @@ async function getProfile(response, id) {
 }
 
 async function deleteProduct(response, id) {
-    products = reload(product_database);
+    products = await reload(product_database);
     const index = getIndex(products, id);
 
     if(index == -1){   
@@ -107,17 +109,23 @@ async function deleteProduct(response, id) {
     }
     else {
         products.splice(index, 1);
-        save(products, product_database);
+        await save(products, product_database);
         response.status(200).json("Product successfully deleted");
     }
 }
 
 async function dump(response, database) {
-    let json = reload(database);
-    if (database === product_database)
+    let json = [];
+
+    if (database === "product_database") {
+        json = await reload(product_database);
         products = json;
-    else if (database === user_database)
+    }
+    else if (database === "user_database") {
+        json = await reload(user_database);
         users = json;
+    }
+    console.log(json)
     response.status(200).json(json);
 }
 
@@ -133,10 +141,6 @@ app.get('/product', async (request, response) => {
     getProduct(response, details.id);
 });
 
-app.post('/register', async (request, response) => {
-    register(response, request.body);
-});
-
 app.post('/login', async (request, response) => {
     login(response, request.body);
 });
@@ -147,7 +151,7 @@ app.post('/register', async (request, response) => {
     register(response, details);
 });
 
-app.post('/product', async (request, response) => {
+app.post('/product/new', async (request, response) => {
     const details = request.body;
     createProduct(response, details);
 });
