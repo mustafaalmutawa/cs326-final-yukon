@@ -12,16 +12,25 @@ const user_database = 'users.json';
 const product_ids = 'product-ids.json';
 const user_ids = 'user-ids.json';
 
-function createfakeid(array,filename){
-    array = await reload(filename);
+async function createfakeUserid(){
+    Userid = await reload(user_ids);
     let fakeId = Math.floor(Math.random()*90000) + 10000;
-    while(array.includes(fakeId)){
+    while(Userid.includes(fakeId)){
         fakeId = Math.floor(Math.random()*90000) + 10000
     }
-    array.push(fakeId);
-    await save(array,filename)
+    Userid.push(fakeId);
+    await save(Userid,user_ids);
     return fakeId;
-
+}
+async function createfakeproductid(){
+    productId = await reload(product_ids);
+    let fakeId = Math.floor(Math.random()*90000) + 10000;
+    while(productId.includes(fakeId)){
+        fakeId = Math.floor(Math.random()*90000) + 10000
+    }
+    productId.push(fakeId);
+    await save(productId,product_ids);
+    return fakeId;
 }
 async function reload(filename) {
     try {
@@ -76,7 +85,7 @@ async function getProduct(response, id) {
 
 async function register(response, body) {
     users = await reload(user_database);
-    const fakeId = createfakeid(Userid,user_ids);
+    const fakeId = createfakeUserid();
     const fakeObj = {"id": fakeId, "name": faker.name.firstName(), "phone number": faker.phone.phoneNumber()}   
     users.push(fakeObj);
     await save(users, user_database);
@@ -90,7 +99,7 @@ async function login(response, body) {
 
 async function createProduct(response, body) { 	
     products = await reload(product_database);
-    const fakeId = createfakeid(productId,product_ids);
+    const fakeId = createfakeproductid();
     const fakeObj = {"id" : fakeId, "name": faker.commerce.product(), "brand": faker.company.companyName(), "price": faker.finance.amount()}
     products.push(fakeObj);
     await save(products, product_database);
@@ -98,7 +107,7 @@ async function createProduct(response, body) {
 }
 
 async function buyProduct(response, body) {
-    const fakeId = createfakeId(productId,product_ids);
+    const fakeId = createfakeproductid();
     const fakeObj = {"id": fakeId, "name": faker.commerce.product(), "brand": faker.company.companyName(), "price": faker.finance.amount()}
     //deleteProduct(response, fakeId)
     response.status(200).json(fakeObj);
