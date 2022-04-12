@@ -83,20 +83,6 @@ async function getProduct(response, id) {
         response.status(404).json({ error: 'Product id not found' });
 }
 
-async function register(response, body) {
-    users = await reload(user_database);
-    const fakeId = createfakeUserid();
-    const fakeObj = {"id": fakeId, "name": faker.name.firstName(), "phone number": faker.phone.phoneNumber()}   
-    users.push(fakeObj);
-    await save(users, user_database);
-    response.status(200).json(fakeObj);
-}
-
-async function login(response, body) {
-    const fakeObj = {"name": faker.name.firstName(), "phone number": faker.phone.phoneNumber()}
-    response.status(200).json(fakeObj)
-}
-
 async function createProduct(response, body) { 	
     products = await reload(product_database);
     const fakeId = createfakeproductid();
@@ -113,16 +99,6 @@ async function buyProduct(response, body) {
     response.status(200).json(fakeObj);
 }
 
-async function getProfile(response, id) {
-    users = await reload(user_database);
-    const index = getIndex(users, id);
-
-    if (index !== -1) 
-        response.status(200).json(users[index]);  
-    else
-        response.status(404).json({ error: 'User id not found' });
-}
-
 async function deleteProduct(response, id) {
     products = await reload(product_database);
     const index = getIndex(products, id);
@@ -134,6 +110,44 @@ async function deleteProduct(response, id) {
         products.splice(index, 1);
         await save(products, product_database);
         response.status(200).json("Product successfully deleted");
+    }
+}
+
+async function getUserProfile(response, id) {
+    users = await reload(user_database);
+    const index = getIndex(users, id);
+
+    if (index !== -1) 
+        response.status(200).json(users[index]);  
+    else
+        response.status(404).json({ error: 'User id not found' });
+}
+
+async function register(response, body) {
+    users = await reload(user_database);
+    const fakeId = createfakeUserid();
+    const fakeObj = {"id": fakeId, "name": faker.name.firstName(), "phone number": faker.phone.phoneNumber()}   
+    users.push(fakeObj);
+    await save(users, user_database);
+    response.status(200).json(fakeObj);
+}
+
+async function login(response, body) {
+    const fakeObj = {"name": faker.name.firstName(), "phone number": faker.phone.phoneNumber()}
+    response.status(200).json(fakeObj)
+}
+
+async function deleteUser(response, id) {
+    users = await reload(user_database);
+    const index = getIndex(users, id);
+
+    if(index == -1){   
+        response.status(404).json({ error: 'User id not found' });
+    }
+    else {
+        users.splice(index, 1);
+        await save(users, user_database);
+        response.status(200).json("User successfully deleted");
     }
 }
 
@@ -164,34 +178,39 @@ app.get('/product', async (request, response) => {
     getProduct(response, details.id);
 });
 
-app.post('/login', async (request, response) => {
-    login(response, request.body);
-});
-
-app.post('/register', async (request, response) => {
-    console.log(request.body);
-    const details = request.body;
-    register(response, details);
-});
-
 app.post('/product/new', async (request, response) => {
     const details = request.body;
     createProduct(response, details);
 });
 
-app.post('/buy', async (request, response) => {
+app.post('/product/buy', async (request, response) => {
     const details = request.body;
     buyProduct(response, details);
-});
-
-app.get('/profile', async (request, response) => {
-    const details = request.query;
-    getProfile(response, details.id);
 });
 
 app.delete('/product/delete', async (request, response) => {
     const details = request.query;
     deleteProduct(response, details.id);
+});
+
+app.get('/user', async (request, response) => {
+    const details = request.query;
+    getUserProfile(response, details.id);
+});
+
+app.post('/user/new', async (request, response) => {
+    console.log(request.body);
+    const details = request.body;
+    register(response, details);
+});
+
+app.post('/user/login', async (request, response) => {
+    login(response, request.body);
+});
+
+app.delete('/user/delete', async (request, response) => {
+    const details = request.query;
+    deleteUser(response, details.id);
 });
 
 app.get('/dump', async (request, response) => {
@@ -206,4 +225,3 @@ app.get('*', async (request, response) => {
 app.listen(port, () => {
   console.log(`Server started on port ${port}`);
 });
-
