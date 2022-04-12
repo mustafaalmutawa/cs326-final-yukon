@@ -5,33 +5,10 @@ import { faker } from '@faker-js/faker';
 
 let products = [];
 let users = [];
-let productId = [];
-let Userid = [];
+
 const product_database = 'products.json';
 const user_database = 'users.json';
-const product_ids = 'product-ids.json';
-const user_ids = 'user-ids.json';
 
-async function createfakeUserid(){
-    Userid = await reload(user_ids);
-    let fakeId = Math.floor(Math.random()*90000) + 10000;
-    while(Userid.includes(fakeId)){
-        fakeId = Math.floor(Math.random()*90000) + 10000
-    }
-    Userid.push(fakeId);
-    await save(Userid,user_ids);
-    return fakeId;
-}
-async function createfakeproductid(){
-    productId = await reload(product_ids);
-    let fakeId = Math.floor(Math.random()*90000) + 10000;
-    while(productId.includes(fakeId)){
-        fakeId = Math.floor(Math.random()*90000) + 10000
-    }
-    productId.push(fakeId);
-    await save(productId,product_ids);
-    return fakeId;
-}
 async function reload(filename) {
     try {
         const data = await readFile(filename, { encoding: 'utf8' });
@@ -85,7 +62,7 @@ async function getProduct(response, id) {
 
 async function createProduct(response, body) { 	
     products = await reload(product_database);
-    const fakeId = createfakeproductid();
+    const fakeId = Math.floor(Math.random()*90000) + 10000;
     const fakeObj = {"id" : fakeId, "name": faker.commerce.product(), "brand": faker.company.companyName(), "price": faker.finance.amount()}
     products.push(fakeObj);
     await save(products, product_database);
@@ -93,7 +70,7 @@ async function createProduct(response, body) {
 }
 
 async function buyProduct(response, body) {
-    const fakeId = createfakeproductid();
+    const fakeId = Math.floor(Math.random()*90000) + 10000;
     const fakeObj = {"id": fakeId, "name": faker.commerce.product(), "brand": faker.company.companyName(), "price": faker.finance.amount()}
     //deleteProduct(response, fakeId)
     response.status(200).json(fakeObj);
@@ -103,7 +80,7 @@ async function deleteProduct(response, id) {
     products = await reload(product_database);
     const index = getIndex(products, id);
 
-    if(index == -1){   
+    if (index == -1) {   
         response.status(404).json({ error: 'Product id not found' });
     }
     else {
@@ -125,7 +102,7 @@ async function getUserProfile(response, id) {
 
 async function register(response, body) {
     users = await reload(user_database);
-    const fakeId = createfakeUserid();
+    const fakeId = Math.floor(Math.random()*90000) + 10000;
     const fakeObj = {"id": fakeId, "name": faker.name.firstName(), "phone number": faker.phone.phoneNumber()}   
     users.push(fakeObj);
     await save(users, user_database);
