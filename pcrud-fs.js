@@ -72,7 +72,6 @@ async function createProduct(response, body) {
 async function buyProduct(response, body) {
     const fakeId = Math.floor(Math.random()*90000) + 10000;
     const fakeObj = {"id": fakeId, "name": faker.commerce.product(), "brand": faker.company.companyName(), "price": faker.finance.amount()}
-    //deleteProduct(response, fakeId)
     response.status(200).json(fakeObj);
 }
 
