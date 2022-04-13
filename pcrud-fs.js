@@ -2,6 +2,9 @@ import express from 'express';
 import logger from 'morgan';
 import { readFile, writeFile } from 'fs/promises';
 import { faker } from '@faker-js/faker';
+import { fileURLToPath } from 'url';
+import { dirname } from 'path';
+
 
 let products = [];
 let users = [];
@@ -144,6 +147,8 @@ async function dump(response, database) {
 
 const app = express(); 
 const port = 3000;
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -151,7 +156,9 @@ app.use('/client', express.static('client'));
 
 app.get('/product', async (request, response) => {
     const details = request.query;
-    getProduct(response, details.id);
+    //getProduct(response, details.id);
+    response.sendFile('/client/product.html', {root: __dirname })
+
 });
 
 app.post('/product/new', async (request, response) => {
@@ -171,7 +178,9 @@ app.delete('/product/delete', async (request, response) => {
 
 app.get('/user', async (request, response) => {
     const details = request.query;
-    getUserProfile(response, details.id);
+    //getUserProfile(response, details.id);
+    response.sendFile('/user_profile.html', {root: __dirname })
+
 });
 
 app.post('/user/new', async (request, response) => {
@@ -188,7 +197,30 @@ app.delete('/user/delete', async (request, response) => {
     const details = request.query;
     deleteUser(response, details.id);
 });
+app.get('/login', async (request, response) => {
+    const details = request.query;
+    //getUserProfile(response, details.id);
+    response.sendFile('/client/user_profile.html', {root: __dirname })
 
+});
+app.get('/register', async (request, response) => {
+    const details = request.query;
+    //getUserProfile(response, details.id);
+    response.sendFile('/client/register.html', {root: __dirname })
+
+});
+app.get('/homepage', async (request, response) => {
+    const details = request.query;
+    //getUserProfile(response, details.id);
+    response.sendFile('/client/Homepage.html', {root: __dirname })
+
+});
+app.get('/listing', async (request, response) => {
+    const details = request.query;
+    //getUserProfile(response, details.id);
+    response.sendFile('/client/listing.html', {root: __dirname })
+
+});
 app.get('/dump', async (request, response) => {
     const details = request.query;
     dump(response, details.database);
