@@ -112,8 +112,8 @@ async function register(response, body) {
 }
 
 async function login(response, body) {
-    const fakeObj = {"name": faker.name.firstName(), "phone number": faker.phone.phoneNumber()}
-    response.status(200).json(fakeObj)
+    const details = {'username': body.username, 'password': body.password}
+    response.status(200).json(details)
 }
 
 async function deleteUser(response, id) {
@@ -190,6 +190,7 @@ app.post('/user/new', async (request, response) => {
 });
 
 app.post('/user/login', async (request, response) => {
+    console.log(request.body)
     login(response, request.body);
 });
 
