@@ -190,6 +190,7 @@ app.post('/user/new', async (request, response) => {
 
 app.post('/user/login', async (request, response) => {
     login(response, request.body);
+    console.log(request.body);
 });
 
 app.delete('/user/delete', async (request, response) => {
