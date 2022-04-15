@@ -17,5 +17,6 @@ login_button.addEventListener('click', async (e) => {
   console.log(email)
   console.log(password)
   await crud.login(email, password);
+  await crud.getUserProfile();
 });
 
