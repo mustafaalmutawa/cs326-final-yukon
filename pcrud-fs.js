@@ -184,13 +184,11 @@ app.get('/user', async (request, response) => {
 });
 
 app.post('/user/new', async (request, response) => {
-    console.log(request.body);
     const details = request.body;
     register(response, details);
 });
 
 app.post('/user/login', async (request, response) => {
-    console.log(request.body)
     login(response, request.body);
 });
 

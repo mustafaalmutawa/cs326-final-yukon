@@ -1,10 +1,11 @@
 import * as crud from './crud.js';
 
 const login_button = document.getElementById('login_button');
-
+const email_field = document.getElementById('login_email');
+const password_field = document.getElementById('login_password');
 login_button.addEventListener('click', async (e) => {
-  const email = document.getElementById('login_email').value;
-  const password = document.getElementById('login_password').value; 
+  const email = email_field.value;
+  const password = password_field.value;
   console.log(email)
   console.log(password)
   await crud.login(email, password);
