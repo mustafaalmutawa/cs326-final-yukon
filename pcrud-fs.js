@@ -152,7 +152,7 @@ const __dirname = dirname(__filename);
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-app.use('/client', express.static('client'));
+app.use('/', express.static('client'));
 
 app.get('/product', async (request, response) => {
     const details = request.query;
