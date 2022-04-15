@@ -4,6 +4,7 @@ import { readFile, writeFile } from 'fs/promises';
 import { faker } from '@faker-js/faker';
 import { fileURLToPath } from 'url';
 import { dirname } from 'path';
+import { runInNewContext } from 'vm';
 
 
 let products = [];
@@ -112,8 +113,8 @@ async function register(response, body) {
 }
 
 async function login(response, body) {
-    const fakeObj = {"name": faker.name.firstName(), "phone number": faker.phone.phoneNumber()}
-    response.status(200).json(fakeObj)
+    const details = {'username': body.username, 'password': body.password}
+    response.status(200).json(details)
 }
 
 async function deleteUser(response, id) {
@@ -152,7 +153,7 @@ const __dirname = dirname(__filename);
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-app.use('/client', express.static('client'));
+app.use('/', express.static('client'));
 
 app.get('/product', async (request, response) => {
     const details = request.query;
@@ -184,7 +185,6 @@ app.get('/user', async (request, response) => {
 });
 
 app.post('/user/new', async (request, response) => {
-    console.log(request.body);
     const details = request.body;
     register(response, details);
 });
@@ -200,7 +200,7 @@ app.delete('/user/delete', async (request, response) => {
 app.get('/login', async (request, response) => {
     const details = request.query;
     //getUserProfile(response, details.id);
-    response.sendFile('/client/user_profile.html', {root: __dirname })
+    response.sendFile('/client/Login.html', {root: __dirname })
 
 });
 app.get('/register', async (request, response) => {
