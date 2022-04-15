@@ -200,7 +200,7 @@ app.delete('/user/delete', async (request, response) => {
 app.get('/login', async (request, response) => {
     const details = request.query;
     //getUserProfile(response, details.id);
-    response.sendFile('/client/user_profile.html', {root: __dirname })
+    response.sendFile('/client/Login.html', {root: __dirname })
 
 });
 app.get('/register', async (request, response) => {
