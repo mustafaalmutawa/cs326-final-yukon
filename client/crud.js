@@ -2,7 +2,7 @@ export async function login(username, password) {
   const response = await fetch(
     '/user/login',
     {
-      body: {'username': username, 'password': password},
+      body: JSON.stringify({'username': username, 'password': password}),
       method: 'POST',
     }
   );
