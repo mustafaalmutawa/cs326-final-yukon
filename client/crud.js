@@ -50,3 +50,14 @@ export async function getUserProfile() {
     console.log(err);
   }
 }
+export async function getProduct() {
+  try {
+    const response = await fetch(`/product`, {
+      method: 'GET',
+    });
+    const data = await response.json();
+    return data;
+  } catch (err) {
+    console.log(err);
+  }
+}
