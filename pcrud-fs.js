@@ -104,11 +104,11 @@ async function getUserProfile(response, id) {
 
 async function register(response, body) {
     users = await reload(user_database);
-    const fakeId = Math.floor(Math.random()*90000) + 10000;
-    const fakeObj = {"id": fakeId, "name": faker.name.firstName(), "phone number": faker.phone.phoneNumber()}   
-    users.push(fakeObj);
+   // const fakeId = Math.floor(Math.random()*90000) + 10000;
+    const obj = {"id": body.username, "email": body.email, "password": body.password}   
+    users.push(obj);
     await save(users, user_database);
-    response.status(200).json(fakeObj);
+    response.status(200).json(obj);
 }
 
 async function login(response, body) {
@@ -184,6 +184,7 @@ app.get('/user', async (request, response) => {
 });
 
 app.post('/user/new', async (request, response) => {
+    console.log(request.body);
     const details = request.body;
     register(response, details);
 });
