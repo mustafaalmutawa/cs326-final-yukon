@@ -65,11 +65,12 @@ async function getProduct(response, id) {
 
 async function createProduct(response, body) { 	
     products = await reload(product_database);
-    const fakeId = Math.floor(Math.random()*90000) + 10000;
-    const fakeObj = {"id" : fakeId, "name": faker.commerce.product(), "brand": faker.company.companyName(), "price": faker.finance.amount()}
-    products.push(fakeObj);
+    //const fakeId = Math.floor(Math.random()*90000) + 10000;
+    //const fakeObj = {"id" : fakeId, "name": faker.commerce.product(), "brand": faker.company.companyName(), "price": faker.finance.amount()}
+    const obj = {"itemName": body.itemName, "price": body.price, "category": body.category, "condition": body.condition, "description": body.description, "images": body.images, "location": body.location, "shipping": body.shipping, "pickup": body.pickup, "payment": body.payment}
+    products.push(obj);
     await save(products, product_database);
-    response.status(200).json(fakeObj);
+    response.status(200).json(obj);
 }
 
 async function buyProduct(response, body) {
@@ -163,6 +164,7 @@ app.get('/product', async (request, response) => {
 
 app.post('/product/new', async (request, response) => {
     const details = request.body;
+    console.log(details);
     createProduct(response, details);
 });
 
