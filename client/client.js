@@ -6,11 +6,13 @@ const email_field = document.getElementById('login_email');
 const password_field = document.getElementById('login_password');
 const listing_button = document.getElementById("create_listing");
 
-const product = document.getElementById("product1");
-product.addEventListener('touchstart', async (e) => {
-  console.log("clicked!")
-  await crud.getProduct();
-});
+const product1 = document.getElementById("product1");
+if (product1 !== null) {
+  product1.addEventListener('click', async (e) => {
+    console.log("clicked!")
+    await crud.getProduct();
+  });
+}
 
 if (login_button !== null) {
   login_button.addEventListener('click', async (e) => {
@@ -32,7 +34,9 @@ if (register_button !== null){
   });
 }
 
-listing_button.addEventListener('click', async (e) => {
+if (listing_button !== null) {
+  listing_button.addEventListener('click', async (e) => {
+    console.log("reached here!")
     const itemName = document.getElementById("itemName").value;
     const price = document.getElementById("price").value;
 
@@ -43,19 +47,22 @@ listing_button.addEventListener('click', async (e) => {
     const condition = selectedCondition.options[selectedCondition.selectedIndex].text;
 
     const description = document.getElementById("description").value;
-    const images = document.getElementById("images").files;
+    const images = document.getElementById("images").files[0];
+    console.log(images);
 
     const selectedLocation = document.getElementById("location");
     const location = selectedLocation.options[selectedLocation.selectedIndex].text;
 
     const shipping = document.getElementById("shipping").checked;
-    let shippingPrice = 0;
+    let shippingPrice = null;
     if (shipping) {
       shippingPrice = document.getElementById("shipping_price").value;
     }
 
     const pickup = document.getElementById("pickup").checked;
-    const payment = Array.from(document.getElementById("pPayement").selectedOptions);
+    const selectedPayment = document.getElementById("pPayement").selectedOptions
+    const payment = Array.from(selectedPayment).map(o => o.value);
 
     await crud.createProduct(itemName, price, category, condition, description, images, location, shipping, shippingPrice, pickup, payment);
-});
+  });
+}

@@ -67,7 +67,7 @@ async function createProduct(response, body) {
     products = await reload(product_database);
     //const fakeId = Math.floor(Math.random()*90000) + 10000;
     //const fakeObj = {"id" : fakeId, "name": faker.commerce.product(), "brand": faker.company.companyName(), "price": faker.finance.amount()}
-    const obj = {"itemName": body.itemName, "price": body.price, "category": body.category, "condition": body.condition, "description": body.description, "images": body.images, "location": body.location, "shipping": body.shipping, "pickup": body.pickup, "payment": body.payment}
+    const obj = {"itemName": body.itemName, "price": body.price, "category": body.category, "condition": body.condition, "description": body.description, "images": body.images, "location": body.location, "shipping": body.shipping, "shippingPrice": body.shippingPrice, "pickup": body.pickup, "payment": body.payment}
     products.push(obj);
     await save(products, product_database);
     response.status(200).json(obj);
@@ -159,12 +159,10 @@ app.get('/product', async (request, response) => {
     const details = request.query;
     //getProduct(response, details.id);
     response.sendFile('/client/product.html', {root: __dirname })
-
 });
 
 app.post('/product/new', async (request, response) => {
     const details = request.body;
-    console.log(details);
     createProduct(response, details);
 });
 
@@ -182,7 +180,6 @@ app.get('/user', async (request, response) => {
     const details = request.query;
     //getUserProfile(response, details.id);
     response.sendFile('/client/user_profile.html', {root: __dirname })
-
 });
 
 app.post('/user/new', async (request, response) => {
@@ -200,30 +197,31 @@ app.delete('/user/delete', async (request, response) => {
     const details = request.query;
     deleteUser(response, details.id);
 });
+
 app.get('/login', async (request, response) => {
     const details = request.query;
     //getUserProfile(response, details.id);
     response.sendFile('/client/Login.html', {root: __dirname })
-
 });
+
 app.get('/register', async (request, response) => {
     const details = request.query;
     //getUserProfile(response, details.id);
     response.sendFile('/client/register.html', {root: __dirname })
-
 });
+
 app.get('/homepage', async (request, response) => {
     const details = request.query;
     //getUserProfile(response, details.id);
     response.sendFile('/client/Homepage.html', {root: __dirname })
-
 });
+
 app.get('/listing', async (request, response) => {
     const details = request.query;
     //getUserProfile(response, details.id);
     response.sendFile('/client/listing.html', {root: __dirname })
-
 });
+
 app.get('/dump', async (request, response) => {
     const details = request.query;
     dump(response, details.database);
