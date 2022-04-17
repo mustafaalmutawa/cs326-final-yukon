@@ -181,7 +181,7 @@ app.delete('/product/delete', async (request, response) => {
 app.get('/user', async (request, response) => {
     const details = request.query;
     //getUserProfile(response, details.id);
-    response.sendFile('/user_profile.html', {root: __dirname })
+    response.sendFile('/client/user_profile.html', {root: __dirname })
 
 });
 

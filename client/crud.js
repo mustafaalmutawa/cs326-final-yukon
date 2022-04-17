@@ -25,15 +25,18 @@ export async function register(username,email, password) {
   return data;
 }
 
-export async function postproduct(itemName,price,category,condition,description,images,location,shipping,pickup,payment) {
-  const user = {"itemName": itemName, "price": price, "category": category, "condition": condition, "description": description, "images": images, "location": location, "shipping": shipping, "pickup": pickup, "payment": payment}
+export async function createProduct(itemName,price,category,condition,description,images,location,shipping,shippingPrice,pickup,payment) {
+  const details = {"itemName": itemName, "price": price, "category": category, 
+  "condition": condition, "description": description, "images": images,
+  "location": location, "shipping": shipping, "shippingPrice": shippingPrice,
+  "pickup": pickup, "payment": payment}
 
   const response = await fetch(`/product/new`,{
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify(user)
+      body: JSON.stringify(details)
     }
   );
   const data = await response.json();
