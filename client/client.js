@@ -1,4 +1,5 @@
 import * as crud from './crud.js';
+import * as homepage from './Homepage.js';
 
 const register_button = document.getElementById("register_button");
 const login_button = document.getElementById('login_button');
@@ -49,6 +50,7 @@ if (listing_button !== null) {
     const description = document.getElementById("description").value;
     const images = document.getElementById("images").files[0];
     console.log(images);
+    const image_files = document.getElementById("images").files;
 
     const selectedLocation = document.getElementById("location");
     const location = selectedLocation.options[selectedLocation.selectedIndex].text;
@@ -63,6 +65,7 @@ if (listing_button !== null) {
     const selectedPayment = document.getElementById("pPayement").selectedOptions
     const payment = Array.from(selectedPayment).map(o => o.value);
 
-    await crud.createProduct(itemName, price, category, condition, description, images, location, shipping, shippingPrice, pickup, payment);
+    const product_data = await crud.createProduct(itemName, price, category, condition, description, images, location, shipping, shippingPrice, pickup, payment);
+    homepage.goToHomepage(product_data, image_files);
   });
 }
