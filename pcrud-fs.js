@@ -25,9 +25,9 @@ async function reload(filename) {
     }
 }
 
-async function save(json, filename) { 
+async function save(json_arr, filename) { 
     try {
-        const data = JSON.stringify(json);
+        const data = JSON.stringify(json_arr);
         await writeFile(filename, data, { encoding: 'utf8' });
     } 
     catch (err) {
@@ -35,19 +35,23 @@ async function save(json, filename) {
   }
 }
 
-async function itemExists(json, id) {
-    for (const item of json){
-        if (String(item['id']) === id){
-            return true;
+function itemExists(json_arr, id) {
+    for (const item of json_arr){
+        if ("id" in item) {
+            if (item['id'] === id){
+                return true;
+            }
         }
     }
     return false;
 }
 
-function getIndex(json, id) { 
-    for (const [index, item] of json.entries()){
-        if (String(item['id']) === id){
-          return index;
+function getIndex(json_arr, id) { 
+    for (const [index, item] of json_arr.entries()){
+        if ("id" in item) {
+            if (item['id'] === id){
+            return index;
+            }
         }
     }
     return -1;
@@ -55,7 +59,7 @@ function getIndex(json, id) {
 
 async function getProduct(response, id) {
     products = await reload(product_database);
-    const index = getIndex(products, id);
+    const index = getIndex(products, parseInt(id));
 
     if (index !== -1) 
         response.status(200).json(products[index]);  
@@ -67,7 +71,11 @@ async function createProduct(response, body) {
     products = await reload(product_database);
     //const fakeId = Math.floor(Math.random()*90000) + 10000;
     //const fakeObj = {"id" : fakeId, "name": faker.commerce.product(), "brand": faker.company.companyName(), "price": faker.finance.amount()}
-    const obj = {"itemName": body.itemName, "price": body.price, "category": body.category, "condition": body.condition, "description": body.description, "images": body.images, "location": body.location, "shipping": body.shipping, "shippingPrice": body.shippingPrice, "pickup": body.pickup, "payment": body.payment}
+    let id = Math.floor(Math.random()*90000) + 10000;
+    while (itemExists(products, id)) {
+        id = Math.floor(Math.random()*90000) + 10000;
+    }
+    const obj = {"id": id, "itemName": body.itemName, "price": body.price, "category": body.category, "condition": body.condition, "description": body.description, "images": body.images, "location": body.location, "shipping": body.shipping, "shippingPrice": body.shippingPrice, "pickup": body.pickup, "payment": body.payment}
     products.push(obj);
     await save(products, product_database);
     response.status(200).json(obj);
@@ -81,7 +89,7 @@ async function buyProduct(response, body) {
 
 async function deleteProduct(response, id) {
     products = await reload(product_database);
-    const index = getIndex(products, id);
+    const index = getIndex(products, parseInt(id));
 
     if (index == -1) {   
         response.status(404).json({ error: 'Product id not found' });
@@ -95,7 +103,7 @@ async function deleteProduct(response, id) {
 
 async function getUserProfile(response, id) {
     users = await reload(user_database);
-    const index = getIndex(users, id);
+    const index = getIndex(users, parseInt(id));
 
     if (index !== -1) 
         response.status(200).json(users[index]);  
@@ -119,7 +127,7 @@ async function login(response, body) {
 
 async function deleteUser(response, id) {
     users = await reload(user_database);
-    const index = getIndex(users, id);
+    const index = getIndex(users, parseInt(id));
 
     if(index == -1){   
         response.status(404).json({ error: 'User id not found' });
