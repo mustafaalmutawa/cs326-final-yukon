@@ -4,6 +4,7 @@ import { readFile, writeFile } from 'fs/promises';
 import { faker } from '@faker-js/faker';
 import { fileURLToPath } from 'url';
 import { dirname } from 'path';
+import { join } from 'path';
 
 
 let products = [];
@@ -166,7 +167,7 @@ app.use('/', express.static('client'));
 app.get('/product', async (request, response) => {
     const details = request.query;
     //getProduct(response, details.id);
-    response.sendFile('/client/product.html', {root: __dirname })
+    response.sendFile('/client/product.html', {root: join(__dirname, '..') })
 });
 
 app.post('/product/new', async (request, response) => {
@@ -187,7 +188,7 @@ app.delete('/product/delete', async (request, response) => {
 app.get('/user', async (request, response) => {
     const details = request.query;
     //getUserProfile(response, details.id);
-    response.sendFile('/client/user_profile.html', {root: __dirname })
+    response.sendFile('/client/user_profile.html', {root: join(__dirname, '..') })
 });
 
 app.post('/user/new', async (request, response) => {
@@ -209,25 +210,25 @@ app.delete('/user/delete', async (request, response) => {
 app.get('/login', async (request, response) => {
     const details = request.query;
     //getUserProfile(response, details.id);
-    response.sendFile('/client/Login.html', {root: __dirname })
+    response.sendFile('/client/Login.html', {root: join(__dirname, '..') })
 });
 
 app.get('/register', async (request, response) => {
     const details = request.query;
     //getUserProfile(response, details.id);
-    response.sendFile('/client/register.html', {root: __dirname })
+    response.sendFile('/client/register.html', {root: join(__dirname, '..') })
 });
 
 app.get('/homepage', async (request, response) => {
     const details = request.query;
     //getUserProfile(response, details.id);
-    response.sendFile('/client/Homepage.html', {root: __dirname })
+    response.sendFile('/client/Homepage.html', {root: join(__dirname, '..') })
 });
 
 app.get('/listing', async (request, response) => {
     const details = request.query;
     //getUserProfile(response, details.id);
-    response.sendFile('/client/listing.html', {root: __dirname })
+    response.sendFile('/client/listing.html', {root: join(__dirname, '..') })
 });
 
 app.get('/dump', async (request, response) => {
