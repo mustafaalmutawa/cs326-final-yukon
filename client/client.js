@@ -31,6 +31,7 @@ if (register_button !== null){
     const username = document.getElementById("username").value;
     const password = document.getElementById("password").value;
     await crud.register(username,email, password);
+    window.location.href = "user_profile.html"
     //await crud.getUserProfile(username,email,password);
   });
 }
