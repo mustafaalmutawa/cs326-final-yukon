@@ -11,7 +11,7 @@
     "start": "node pcrud-fs.js",
     "test": "echo \"Error: no test specified\" && exit 1",
     "debug": "node --inspect-brk pcrud-fs.js",
-    "deploy": "copyfiles *.js .env package*.json client/* client/test_images/* docs/* deploy"
+    "deploy": "copyfiles .env package*.json client/* client/test_images/* docs/* server/* deploy"
   },
   "repository": {
     "type": "git",
