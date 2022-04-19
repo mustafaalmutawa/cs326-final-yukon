@@ -20,7 +20,7 @@ if (login_button !== null) {
     const email = email_field.value;
     const password = password_field.value;
     await crud.login(email, password);
-    await crud.getUserProfile();
+    window.location.href = "Homepage.html"
   });
 }
 
