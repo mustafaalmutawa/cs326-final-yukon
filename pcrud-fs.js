@@ -198,6 +198,10 @@ app.post('/user/new', async (request, response) => {
     register(response, details);
 });
 
+app.put('/user/update', async (request, response) => {
+    response.status(200).json({sucess: 'updated'});
+});
+
 app.post('/user/login', async (request, response) => {
     login(response, request.body);
     console.log(request.body);

@@ -74,3 +74,16 @@ export async function getProduct() {
     console.log(err);
   }
 }
+
+export async function updateName(name) {
+  try {
+    const response = await fetch(`/user/update`, {
+      method: 'PUT',
+      body: JSON.stringify({name: name})
+    });
+    const data = await response.json();
+    return data;
+  } catch (err) {
+    console.log(err);
+  }
+}
