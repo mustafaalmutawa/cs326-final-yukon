@@ -25,3 +25,5 @@ This endpoint is for existing users. It will work similarly to the /user/new end
 
 <strong>/user/delete?id=1111</strong>
 This endpoint uses the DELETE method to delete the user with the unique user id.
+
+Heroku Link: https://cs326-final-yukon.herokuapp.com/
