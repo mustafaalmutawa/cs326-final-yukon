@@ -2,8 +2,8 @@
 
 ## Endpoints
 
-<strong>/product?id=1234</strong>
-This will be used for GET requests to get the HTML page for a product specified by its unique product id. This will be leveraged anytime a user clicks on a product preview tile.
+<strong>/product</strong>
+This will be used for GET requests to get the HTML product page.
 
 <strong>/product/new</strong>
 This endpoint is a POST request, which will allow the user to create a new product. The information entered in the create listing form will be turned into a JSON object and passed as a body to the request.
@@ -41,7 +41,7 @@ This endpoints uses the GET request to the Create Listing HTML page
 # Breakdown of Labor    
 We worked collaboratively during this phase, with each's work receiving feedback from the whole team. Below is the breakdown of what each member worked on significantly.
 
-Nitish : I worked on creating all the GET express request so that each GET request will return a static HTML page. I also worked on the CRUD operation seen in the Crud.js file.
+Nitish : I worked on creating all the GET express request so that each GET request will return a static HTML page. I also worked on the CRUD operation seen in the Crud.js file. This is seen as I contributed in writing the login register and deleteUser crud operations. 
 
 Alex:
 
