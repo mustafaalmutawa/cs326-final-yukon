@@ -1,6 +1,7 @@
 import * as crud from './crud.js';
 import { goToHomepage } from './Homepage.js';
-
+let response = await fetch("../users.json");
+let user = await response.json();
 const register_button = document.getElementById("register_button");
 const login_button = document.getElementById('login_button');
 const email_field = document.getElementById('login_email');
@@ -27,9 +28,9 @@ if (login_button !== null) {
 if (register_button !== null){
   register_button.addEventListener('click', async (e) => {
     const email = document.getElementById("email").value;
-    console.log(email);
     const username = document.getElementById("username").value;
     id = username;
+    console.log(id)
     const password = document.getElementById("password").value;
     await crud.register(username,email, password);
     window.location.href = "user_profile.html"
@@ -40,8 +41,8 @@ if(delete_button !== null){
   console.log(id)
   delete_button.addEventListener('click', async(e) =>{
    console.log(id)
-  await crud.deleteUser(id);
- window.location.href = "register.html"
+  //await crud.deleteUser(id);
+ //window.location.href = "register.html"
 })
 }
 
