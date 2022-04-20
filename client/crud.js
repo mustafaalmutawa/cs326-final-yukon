@@ -64,3 +64,31 @@ export async function getProduct() {
     console.log(err);
   }
 }
+
+export async function writeProduct(product) {
+    try {
+        const response = await fetch(`/write_product`, {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(product)
+          });
+        const data = await response.json();
+        return data;
+    } catch (err) {
+        console.log(err);
+    }
+}
+
+export async function readProducts() {
+    try {
+        const response = await fetch(`/read_products`, {
+            method: 'GET'
+          });
+        const data = await response.json();
+        return data;
+    } catch (err) {
+        console.log(err);
+    }
+}
