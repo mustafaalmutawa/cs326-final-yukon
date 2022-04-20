@@ -218,7 +218,7 @@ app.get('/register', async (request, response) => {
     response.sendFile('/client/register.html', {root: __dirname })
 });
 
-app.get('/homepage', async (request, response) => {
+app.get(['/homepage', '/'], async (request, response) => {
     const details = request.query;
     response.sendFile('/client/Homepage.html', {root: __dirname })
 });
