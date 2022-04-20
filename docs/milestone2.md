@@ -38,6 +38,25 @@ This endpoint uses the GET request to retrieve the Homepage HTML page
 <strong>/listing</strong>
 This endpoints uses the GET request to the Create Listing HTML page
 
+# Client Interface
+
+## Create
+
+This is the create listing page, which  allows the user to add a new listing utilzing the CRUD create operation.
+
+## Read
+
+This is the product page. It functions using the CRUD Read operation to retreive and display all the product's information and images.
+
+## Update
+
+This is the user's page. Using the CRUD update operation, tt allows the user to chnage their name——by typing a new name and clicking update.
+
+## Delete
+
+This is also the user's page. It has a delete button, which deletes the user's account using the CRUD delete operation.
+
+
 # Breakdown of Labor    
 We worked collaboratively during this phase, with each's work receiving feedback from the whole team. Below is the breakdown of what each member worked on significantly.
 
@@ -45,6 +64,6 @@ Nitish : I worked on creating all the GET express request so that each GET reque
 
 Alex:
 
-Mustafa:
+Mustafa: I worked on some of the CRUD operations in crud.js as well as adding some event listners and CRUD calls in client.js. I added a few endpoints in pcrud-fs.js. I also worked on the making the homepage products clickable and redirect to the product page. Lastly, I did some of the writing inside milestone2.md.
 
 Tatyana:
