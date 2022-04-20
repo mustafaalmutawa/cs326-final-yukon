@@ -6,6 +6,8 @@ const login_button = document.getElementById('login_button');
 const email_field = document.getElementById('login_email');
 const password_field = document.getElementById('login_password');
 const listing_button = document.getElementById("create_listing");
+const updateName_button = document.getElementById('update_name');
+
 
 const product1 = document.getElementById("product1");
 if (product1 !== null) {
@@ -68,5 +70,14 @@ if (listing_button !== null) {
 
     const product_data = await crud.createProduct(itemName, price, category, condition, description, images, location, shipping, shippingPrice, pickup, payment);
     goToHomepage(product_data, image_files);
+  });
+}
+
+
+if (updateName_button !== null) {
+  updateName_button.addEventListener('click', async (e) => {
+    const name = document.getElementById('newName').value;
+    document.getElementById('user_name').innerHTML = name;
+    await crud.updateName(name);
   });
 }
