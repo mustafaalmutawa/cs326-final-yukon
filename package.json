@@ -24,9 +24,7 @@
   "homepage": "https://github.com/mustafaalmutawa/cs326-final-yukon#readme",
   "dependencies": {
     "express": "^4.17.3",
-    "morgan": "^1.10.0"
-  },
-  "devDependencies": {
+    "morgan": "^1.10.0",
     "@faker-js/faker": "^6.1.2"
   }
 }
