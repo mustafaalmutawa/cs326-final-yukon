@@ -23,8 +23,8 @@
   },
   "homepage": "https://github.com/mustafaalmutawa/cs326-final-yukon#readme",
   "dependencies": {
+    "@faker-js/faker": "^6.1.2",
     "express": "^4.17.3",
-    "morgan": "^1.10.0",
-    "@faker-js/faker": "^6.1.2"
+    "morgan": "^1.10.0"
   }
 }
