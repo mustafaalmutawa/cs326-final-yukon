@@ -74,8 +74,10 @@ We worked collaboratively during this phase, with each's work receiving feedback
 
 Nitish : I worked on creating all the GET express request so that each GET request will return a static HTML page. I also worked on the CRUD operation seen in the Crud.js file. This is seen as I contributed in writing the login register and deleteUser crud operations along with the event listeners that correspond to them. I also contributed to part of writing the posting a product crud operation and event listener. As a side point professor wanted me to say in the division of labor on how I had a wrist injury during most of this assignment which is why I might have been limited to my contributions to the team. Professor said this is fine but just mention it in this section.
 
-Alex:
+Alex: First, Mustafa and I brainstormed up a basis of all endpoints we thought we might need for our app. Then, we both created the pcrud-fs.js file and coded out most the logic for each endpoint we came up with. The others added more routes as more ended up being apparent. I personally worked on creating the architecture for the CRUD operations and creating the first route "/login". This entailed creating a client.js, crud.js file and altering our existing pcrud-fs.js file to link it all up. Last, I setup Heroku and deployed our app.
 
 Mustafa: I worked on some of the CRUD operations in crud.js as well as adding some event listners and CRUD calls in client.js. I added a few endpoints in pcrud-fs.js. I also worked on the making the homepage products clickable and redirect to the product page. Lastly, I did some of the writing inside milestone2.md.
 
 Tatyana: Created files for the products and users to act as databases. Wrote functions to read from and write to those files. Added and updated some functions in pcrud-fs.js. Updated endpoint paths. Wrote some endpoint descriptions.
+
+Heroku: https://cs326-final-yukon.herokuapp.com/
