@@ -1,5 +1,4 @@
 import * as crud from './crud.js';
-import { goToHomepage } from './Homepage.js';
 
 const register_button = document.getElementById("register_button");
 const login_button = document.getElementById('login_button');
@@ -12,7 +11,7 @@ const updateName_button = document.getElementById('update_name');
 const product1 = document.getElementById("product1");
 if (product1 !== null) {
   product1.addEventListener('click', async (e) => {
-    console.log("clicked!")
+    window.location.href = "product.html"
     await crud.getProduct();
   });
 }
@@ -51,9 +50,7 @@ if (listing_button !== null) {
     const condition = selectedCondition.options[selectedCondition.selectedIndex].text;
 
     const description = document.getElementById("description").value;
-    const images = document.getElementById("images").files[0];
-    console.log(images);
-    const image_files = document.getElementById("images").files;
+    const images = document.getElementById("images").files;
 
     const selectedLocation = document.getElementById("location");
     const location = selectedLocation.options[selectedLocation.selectedIndex].text;
@@ -69,7 +66,6 @@ if (listing_button !== null) {
     const payment = Array.from(selectedPayment).map(o => o.value);
 
     const product_data = await crud.createProduct(itemName, price, category, condition, description, images, location, shipping, shippingPrice, pickup, payment);
-    goToHomepage(product_data, image_files);
   });
 }
 
