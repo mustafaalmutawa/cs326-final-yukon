@@ -79,3 +79,13 @@ export async function updateName(name) {
     console.log(err);
   }
 }
+export async function deleteUser() {
+  const response = await fetch(`/user/delete`, {
+    method: 'DELETE',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  });
+  const data = await response.json();
+  return data;
+  }
