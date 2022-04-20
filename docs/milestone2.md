@@ -44,17 +44,29 @@ This endpoints uses the GET request to the Create Listing HTML page
 
 This is the create listing page, which  allows the user to add a new listing utilzing the CRUD create operation.
 
+<img width="1440" alt="Screen Shot 2022-04-20 at 12 38 41 PM" src="https://user-images.githubusercontent.com/40669187/164282998-29e1559d-0423-4b96-9865-01e011ed03c2.png">
+
+
 ## Read
 
-This is the product page. It functions using the CRUD Read operation to retreive and display all the product's information and images.
+This is the homepage. It functions using the CRUD Read operation to retreive and display all the products' information and images.
+
+<img width="1440" alt="Screen Shot 2022-04-20 at 12 54 44 PM" src="https://user-images.githubusercontent.com/40669187/164283199-b9dc1c42-1e2e-4a78-be9f-95867ab2118c.png">
+
 
 ## Update
 
 This is the user's page. Using the CRUD update operation, tt allows the user to chnage their name——by typing a new name and clicking update.
 
+<img width="1440" alt="Screen Shot 2022-04-20 at 12 55 34 PM" src="https://user-images.githubusercontent.com/40669187/164283298-198a43dc-6f72-4cab-a2fc-a2492ee46146.png">
+
+
 ## Delete
 
 This is also the user's page. It has a delete button, which deletes the user's account using the CRUD delete operation.
+
+<img width="1440" alt="Screen Shot 2022-04-20 at 12 55 34 PM" src="https://user-images.githubusercontent.com/40669187/164283313-dd29c57d-2448-4c0d-9170-c8987552aea2.png">
+
 
 
 # Breakdown of Labor    
