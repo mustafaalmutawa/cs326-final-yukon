@@ -14,8 +14,8 @@ An endpoint via POST that a user will use to “buy” items. The data for check
 <strong>/product/delete?id=1234</strong>
 This endpoint uses the DELETE method to delete the product with the unique product id.
 
-<strong>/user?id=1111</strong>
-This endpoint uses the GET method to retrieve the user profile HTML page for the user with the unique user id.
+<strong>/user</strong>
+This endpoint uses the GET method to retrieve the user profile HTML page for the user.
 
 <strong>/user/new</strong>
 The register request simply allows the user to create a new profile via POST. The body of the request will come from the information entered in the sign-up page.
@@ -23,5 +23,28 @@ The register request simply allows the user to create a new profile via POST. Th
 <strong>/user/login</strong>
 This endpoint is for existing users. It will work similarly to the /user/new endpoint, but it is a PUT request.
 
-<strong>/user/delete?id=1111</strong>
-This endpoint uses the DELETE method to delete the user with the unique user id.
+<strong>/user/delete</strong>
+This endpoint uses the DELETE method to delete the user that was just created after registration.
+
+<strong>/login</strong>
+This endpoint uses the GET request to retrieve the Login HTML page
+
+<strong>/register</strong>
+This endpoint uses the GET request to retrieve the Register HTML page
+
+<strong>/homepage</strong>
+This endpoint uses the GET request to retrieve the Homepage HTML page
+
+<strong>/listing</strong>
+This endpoints uses the GET request to the Create Listing HTML page
+
+# Breakdown of Labor    
+We worked collaboratively during this phase, with each's work receiving feedback from the whole team. Below is the breakdown of what each member worked on significantly.
+
+Nitish : I worked on creating all the GET express request so that each GET request will return a static HTML page. I also worked on the CRUD operation seen in the Crud.js file.
+
+Alex:
+
+Mustafa:
+
+Tatyana:
