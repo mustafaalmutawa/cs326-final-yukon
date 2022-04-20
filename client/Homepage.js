@@ -1,12 +1,27 @@
+import {writeProduct, readProducts} from './crud.js'
+
+let products_counter = 0;
 
 $(document).ready(async function() {
     //localStorage.removeItem("homepage_listings")
     reload();
-    const product = JSON.parse(localStorage.getItem("product"));
-    const urls = JSON.parse(localStorage.getItem("image_files"));
+    //const product = JSON.parse(localStorage.getItem("product"));
+    //const urls = JSON.parse(localStorage.getItem("image_files"));
     const final_images = [];
+    const products = await readProducts();
 
-    if (product !== null && urls !== null) {
+    if (products.length > products_counter) {
+        products_counter++;
+        const new_product = products[products.length - 1];
+        for (const url of new_product.images) {
+            const image = new Image();
+            image.src = url;
+            final_images.push(image);
+        }
+        addHomepageListing(new_product, products, final_images);
+    }
+
+    /*if (product !== null && urls !== null) {
         for (const url of urls) {
             const image = new Image();
             image.src = url;
@@ -15,7 +30,7 @@ $(document).ready(async function() {
         localStorage.removeItem("product");
         localStorage.removeItem("image_files");
         addHomepageListing(product, final_images);
-    }
+    }*/
 });
 
 function imagesToURLsHelper(image) {
@@ -40,14 +55,18 @@ async function imagesToURLs(image_files) {
 
 export async function goToHomepage(product, image_files) {
     const urls_arr = await imagesToURLs(image_files);
-    localStorage.setItem("product", JSON.stringify(product));
-    localStorage.setItem("image_files", JSON.stringify(urls_arr));
+    product.images = urls_arr;
+    /*localStorage.setItem("product", JSON.stringify(product));
+    localStorage.setItem("image_files", JSON.stringify(urls_arr));*/
+    const products = await readProducts();
+    products[products.length - 1].images = urls_arr;
+    await writeProduct(products);
     document.location = "/homepage";
 }
 
 let cur_num = 1;
 
-function addHomepageListing(product, image_nodes) {
+async function addHomepageListing(product, products, image_nodes) {
     const grid_row_wrapper = document.getElementById("real_row");
     const listing_wrapper = document.createElement("div");
     listing_wrapper.setAttribute("class", "col-md-3 img-thumbnail");
@@ -101,8 +120,13 @@ function addHomepageListing(product, image_nodes) {
     listing_wrapper.appendChild(h2);
 
     grid_row_wrapper.appendChild(listing_wrapper);
-    let listings = grid_row_wrapper.innerHTML;
-    localStorage.setItem("homepage_listings", listings);
+    //const i = products.findIndex(obj => obj.id === product.id);
+    //products[i].html = grid_row_wrapper.innerHTML;
+
+    products[products.length - 1].html = grid_row_wrapper.innerHTML;
+    await writeProduct(products);
+    //let listings = grid_row_wrapper.innerHTML;
+    //localStorage.setItem("homepage_listings", listings);
 }
 
 function makeButton(c1, c2, ds, text, cur_num) {
@@ -127,11 +151,17 @@ function makeButton(c1, c2, ds, text, cur_num) {
     return button;
 }
 
-function reload() {
+async function reload() {
     const grid_row_wrapper = document.getElementById("real_row");
-    const contents = localStorage.getItem("homepage_listings");
+    /*const contents = localStorage.getItem("homepage_listings");
     if (contents !== null)
         grid_row_wrapper.innerHTML = contents;
     else
-        grid_row_wrapper.innerHTML = "";
+        grid_row_wrapper.innerHTML = "";*/
+
+    const products = await readProducts();
+    for (const product of products) {
+        if ("html" in product)
+            grid_row_wrapper.innerHTML += product.html;
+    }
 }
