@@ -1,3 +1,4 @@
+
 export async function login(username, password) {
   const user = {'username': username, 'password': password};
   const response = await fetch(`/user/login`,{
@@ -11,6 +12,7 @@ export async function login(username, password) {
   const data = await response.json();
   return data;
 }
+
 export async function register(username,email, password) {
   const user = {'username': username, "email": email, 'password': password};
   const response = await fetch(`/user/new`,{
@@ -24,16 +26,6 @@ export async function register(username,email, password) {
   const data = await response.json();
   return data;
 }
-export async function deleteUser() {
-  const response = await fetch(`/user/delete`, {
-    method: 'DELETE',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-  });
-  const data = await response.json();
-  return data;
-  }
 
 export async function createProduct(itemName,price,category,condition,description,images,location,shipping,shippingPrice,pickup,payment) {
   const details = {"itemName": itemName, "price": price, "category": category, 
@@ -52,6 +44,7 @@ export async function createProduct(itemName,price,category,condition,descriptio
   const data = await response.json();
   return data;
 }
+
 export async function getUserProfile() {
   try {
     const response = await fetch(`/login`, {
@@ -63,6 +56,7 @@ export async function getUserProfile() {
     console.log(err);
   }
 }
+
 export async function getProduct() {
   try {
     const response = await fetch(`/product`, {
@@ -81,8 +75,6 @@ export async function updateName(name) {
       method: 'PUT',
       body: JSON.stringify({name: name})
     });
-    const data = await response.json();
-    return data;
   } catch (err) {
     console.log(err);
   }

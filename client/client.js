@@ -7,15 +7,7 @@ const password_field = document.getElementById('login_password');
 const listing_button = document.getElementById("create_listing");
 const delete_button = document.getElementById("delete_button")
 const updateName_button = document.getElementById('update_name');
-const product1 = document.getElementById("product1");
 
-
-if (product1 !== null) {
-  product1.addEventListener('click', async (e) => {
-    window.location.href = "product.html"
-    await crud.getProduct();
-  });
-}
 
 if (login_button !== null) {
   login_button.addEventListener('click', async (e) => {
@@ -26,7 +18,7 @@ if (login_button !== null) {
   });
 }
 
-if (register_button !== null){
+if (register_button !== null) {
   register_button.addEventListener('click', async (e) => {
     const email = document.getElementById("email").value;
     const username = document.getElementById("username").value;
@@ -37,7 +29,7 @@ if (register_button !== null){
   });
 }
 
-if(delete_button !== null){
+if (delete_button !== null) {
   delete_button.addEventListener('click', async(e) =>{
   await crud.deleteUser();
   window.location.href = "register.html"
