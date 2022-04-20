@@ -49,14 +49,14 @@ This is the create listing page, which  allows the user to add a new listing uti
 
 ## Read
 
-This is the homepage. It functions using the CRUD Read operation to retreive and display all the products' information and images.
+This is the homepage. It functions using the CRUD read operation to retreive and display all the products' information and images.
 
 <img width="1440" alt="Screen Shot 2022-04-20 at 12 54 44 PM" src="https://user-images.githubusercontent.com/40669187/164283199-b9dc1c42-1e2e-4a78-be9f-95867ab2118c.png">
 
 
 ## Update
 
-This is the user's page. Using the CRUD update operation, tt allows the user to chnage their name——by typing a new name and clicking update.
+This is the user's page. Using the CRUD update operation, it allows the user to change their name by typing a new name and clicking update.
 
 <img width="1440" alt="Screen Shot 2022-04-20 at 12 55 34 PM" src="https://user-images.githubusercontent.com/40669187/164283298-198a43dc-6f72-4cab-a2fc-a2492ee46146.png">
 
