@@ -125,10 +125,10 @@ async function login(response, body) {
     response.status(200).json(details)
 }
 
-async function deleteUser(response, body) {
+async function deleteUser(response, id) {
     users = await reload(user_database);
-    console.log(body.id);
-    const index = getIndex(users, body.id);
+    console.log(id);
+    const index = getIndex(users, id);
 
     if(index == -1){   
         response.status(404).json({ error: 'User id not found' });
@@ -205,8 +205,7 @@ app.post('/user/login', async (request, response) => {
 
 app.delete('/user/delete', async (request, response) => {
     const details = request.body;
-    console.log(details)
-    deleteUser(response, details);
+    deleteUser(response, users[0].id);
 });
 
 app.get('/login', async (request, response) => {

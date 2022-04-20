@@ -24,10 +24,9 @@ export async function register(username,email, password) {
   const data = await response.json();
   return data;
 }
-export async function deleteUser(username) {
-  const response = await fetch(`//user/delete`, {
+export async function deleteUser() {
+  const response = await fetch(`/user/delete`, {
     method: 'DELETE',
-    body: JSON.stringify({ "id": username }),
     headers: {
       'Content-Type': 'application/json',
     },
