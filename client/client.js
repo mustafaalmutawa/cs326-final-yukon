@@ -43,7 +43,7 @@ if(delete_button !== null){
   delete_button.addEventListener('click', async(e) =>{
    console.log(id)
   await crud.deleteUser();
- //window.location.href = "register.html"
+  window.location.href = "register.html"
 })
 }
 
