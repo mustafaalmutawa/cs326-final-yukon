@@ -24,6 +24,17 @@ export async function register(username,email, password) {
   const data = await response.json();
   return data;
 }
+export async function deleteUser(username) {
+  const response = await fetch(`//user/delete`, {
+    method: 'DELETE',
+    body: JSON.stringify({ "username": username }),
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  });
+  const data = await response.json();
+  return data;
+  }
 
 export async function createProduct(itemName,price,category,condition,description,images,location,shipping,shippingPrice,pickup,payment) {
   const details = {"itemName": itemName, "price": price, "category": category, 

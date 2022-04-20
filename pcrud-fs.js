@@ -125,9 +125,9 @@ async function login(response, body) {
     response.status(200).json(details)
 }
 
-async function deleteUser(response, id) {
+async function deleteUser(response, body) {
     users = await reload(user_database);
-    const index = getIndex(users, parseInt(id));
+    const index = getIndex(users, parseInt(body.username));
 
     if(index == -1){   
         response.status(404).json({ error: 'User id not found' });

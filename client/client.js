@@ -6,7 +6,7 @@ const login_button = document.getElementById('login_button');
 const email_field = document.getElementById('login_email');
 const password_field = document.getElementById('login_password');
 const listing_button = document.getElementById("create_listing");
-
+const delete_button = document.getElementById("delete_button")
 const product1 = document.getElementById("product1");
 if (product1 !== null) {
   product1.addEventListener('click', async (e) => {
@@ -34,6 +34,14 @@ if (register_button !== null){
     window.location.href = "user_profile.html"
     //await crud.getUserProfile(username,email,password);
   });
+}
+const username = document.getElementById("username").value;
+
+if(delete_button !== null){
+  delete_button.addEventListener('click', async(e) =>{
+ await crud.deleteUser(username);
+ window.location.href = "registration.html"
+})
 }
 
 if (listing_button !== null) {
