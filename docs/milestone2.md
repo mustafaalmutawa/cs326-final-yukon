@@ -78,4 +78,4 @@ Alex:
 
 Mustafa: I worked on some of the CRUD operations in crud.js as well as adding some event listners and CRUD calls in client.js. I added a few endpoints in pcrud-fs.js. I also worked on the making the homepage products clickable and redirect to the product page. Lastly, I did some of the writing inside milestone2.md.
 
-Tatyana:
+Tatyana: Created files for the products and users to act as databases. Wrote functions to read from and write to those files. Added and updated some functions in pcrud-fs.js. Updated endpoint paths. Wrote some endpoint descriptions.
