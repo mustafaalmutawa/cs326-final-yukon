@@ -23,24 +23,25 @@ if (login_button !== null) {
     window.location.href = "Homepage.html"
   });
 }
-
+ let id = ""
 if (register_button !== null){
   register_button.addEventListener('click', async (e) => {
     const email = document.getElementById("email").value;
     console.log(email);
     const username = document.getElementById("username").value;
+    id = username;
     const password = document.getElementById("password").value;
     await crud.register(username,email, password);
     window.location.href = "user_profile.html"
     //await crud.getUserProfile(username,email,password);
   });
 }
-const username = document.getElementById("username").value;
-
 if(delete_button !== null){
+  console.log(id)
   delete_button.addEventListener('click', async(e) =>{
- await crud.deleteUser(username);
- window.location.href = "registration.html"
+   console.log(id)
+    //await crud.deleteUser(id);
+ window.location.href = "register.html"
 })
 }
 
