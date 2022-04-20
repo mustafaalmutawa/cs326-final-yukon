@@ -127,7 +127,8 @@ async function login(response, body) {
 
 async function deleteUser(response, body) {
     users = await reload(user_database);
-    const index = getIndex(users, parseInt(body.username));
+    console.log(body.id);
+    const index = getIndex(users, body.id);
 
     if(index == -1){   
         response.status(404).json({ error: 'User id not found' });
@@ -171,6 +172,7 @@ app.get('/product', async (request, response) => {
 
 app.post('/product/new', async (request, response) => {
     const details = request.body;
+    console.log(request.body)
     createProduct(response, details);
 });
 
@@ -202,8 +204,9 @@ app.post('/user/login', async (request, response) => {
 });
 
 app.delete('/user/delete', async (request, response) => {
-    const details = request.query;
-    deleteUser(response, details.id);
+    const details = request.body;
+    console.log(details)
+    deleteUser(response, details);
 });
 
 app.get('/login', async (request, response) => {
