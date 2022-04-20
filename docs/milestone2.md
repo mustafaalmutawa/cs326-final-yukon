@@ -2,8 +2,8 @@
 
 ## Endpoints
 
-<strong>/product?id=1234</strong>
-This will be used for GET requests to get the HTML page for a product specified by its unique product id. This will be leveraged anytime a user clicks on a product preview tile.
+<strong>/product</strong>
+This will be used for GET requests to get the HTML product page.
 
 <strong>/product/new</strong>
 This endpoint is a POST request, which will allow the user to create a new product. The information entered in the create listing form will be turned into a JSON object and passed as a body to the request.
@@ -60,7 +60,7 @@ This is also the user's page. It has a delete button, which deletes the user's a
 # Breakdown of Labor    
 We worked collaboratively during this phase, with each's work receiving feedback from the whole team. Below is the breakdown of what each member worked on significantly.
 
-Nitish : I worked on creating all the GET express request so that each GET request will return a static HTML page. I also worked on the CRUD operation seen in the Crud.js file.
+Nitish : I worked on creating all the GET express request so that each GET request will return a static HTML page. I also worked on the CRUD operation seen in the Crud.js file. This is seen as I contributed in writing the login register and deleteUser crud operations along with the event listeners that correspond to them. I also contributed to part of writing the posting a product crud operation and event listener. As a side point professor wanted me to say in the division of labor on how I had a wrist injury during most of this assignment which is why I might have been limited to my contributions to the team. Professor said this is fine but just mention it in this section.
 
 Alex:
 
