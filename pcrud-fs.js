@@ -69,8 +69,6 @@ async function getProduct(response, id) {
 
 async function createProduct(response, body) { 	
     products = await reload(product_database);
-    //const fakeId = Math.floor(Math.random()*90000) + 10000;
-    //const fakeObj = {"id" : fakeId, "name": faker.commerce.product(), "brand": faker.company.companyName(), "price": faker.finance.amount()}
     let id = Math.floor(Math.random()*90000) + 10000;
     while (itemExists(products, id)) {
         id = Math.floor(Math.random()*90000) + 10000;
@@ -113,7 +111,6 @@ async function getUserProfile(response, id) {
 
 async function register(response, body) {
     users = await reload(user_database);
-   // const fakeId = Math.floor(Math.random()*90000) + 10000;
     const obj = {"id": body.username, "email": body.email, "password": body.password}   
     users.push(obj);
     await save(users, user_database);
@@ -166,7 +163,6 @@ app.use('/', express.static('client'));
 
 app.get('/product', async (request, response) => {
     const details = request.query;
-    //getProduct(response, details.id);
     response.sendFile('/client/product.html', {root: __dirname })
 });
 
@@ -188,7 +184,6 @@ app.delete('/product/delete', async (request, response) => {
 
 app.get('/user', async (request, response) => {
     const details = request.query;
-    //getUserProfile(response, details.id);
     response.sendFile('/client/user_profile.html', {root: __dirname })
 });
 
@@ -214,25 +209,21 @@ app.delete('/user/delete', async (request, response) => {
 
 app.get('/login', async (request, response) => {
     const details = request.query;
-    //getUserProfile(response, details.id);
     response.sendFile('/client/Login.html', {root: __dirname })
 });
 
 app.get('/register', async (request, response) => {
     const details = request.query;
-    //getUserProfile(response, details.id);
     response.sendFile('/client/register.html', {root: __dirname })
 });
 
 app.get('/homepage', async (request, response) => {
     const details = request.query;
-    //getUserProfile(response, details.id);
     response.sendFile('/client/Homepage.html', {root: __dirname })
 });
 
 app.get('/listing', async (request, response) => {
     const details = request.query;
-    //getUserProfile(response, details.id);
     response.sendFile('/client/listing.html', {root: __dirname })
 });
 

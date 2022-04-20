@@ -25,7 +25,6 @@ if (register_button !== null) {
     const password = document.getElementById("password").value;
     await crud.register(username,email, password);
     window.location.href = "user_profile.html"
-    //await crud.getUserProfile(username,email,password);
   });
 }
 
@@ -38,7 +37,6 @@ if (delete_button !== null) {
 
 if (listing_button !== null) {
   listing_button.addEventListener('click', async (e) => {
-    console.log("reached here!")
     const itemName = document.getElementById("itemName").value;
     const price = document.getElementById("price").value;
 
@@ -65,6 +63,7 @@ if (listing_button !== null) {
     const payment = Array.from(selectedPayment).map(o => o.value);
 
     const product_data = await crud.createProduct(itemName, price, category, condition, description, images, location, shipping, shippingPrice, pickup, payment);
+    window.location.href = "user_profile.html"
   });
 }
 
