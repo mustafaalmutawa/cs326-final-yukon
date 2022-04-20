@@ -4,6 +4,7 @@ import { readFile, writeFile } from 'fs/promises';
 import { faker } from '@faker-js/faker';
 import { fileURLToPath } from 'url';
 import { dirname } from 'path';
+import { response } from 'express';
 
 
 let products = [];
@@ -139,6 +140,18 @@ async function deleteUser(response, id) {
     }
 }
 
+async function write_product(response, product) {
+    products = await reload(product_database);
+    products.push(product);
+    await save(products, product_database);
+    response.status(200).json(product);
+}
+
+async function read_products(response) {
+    products = await reload(product_database);
+    response.status(200).json(products);
+}
+
 async function dump(response, database) {
     let json = [];
 
@@ -233,6 +246,15 @@ app.get('/listing', async (request, response) => {
 app.get('/dump', async (request, response) => {
     const details = request.query;
     dump(response, details.database);
+});
+
+app.post('/write_product', async (request, response) => {
+    const product = request.body;
+    write_product(response, product);
+});
+
+app.get('/read_products', async (request, response) => {
+    read_products(response);
 });
 
 app.get('*', async (request, response) => {
