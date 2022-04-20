@@ -41,7 +41,7 @@ This endpoints uses the GET request to the Create Listing HTML page
 # Breakdown of Labor    
 We worked collaboratively during this phase, with each's work receiving feedback from the whole team. Below is the breakdown of what each member worked on significantly.
 
-Nitish : I worked on creating all the GET express request so that each GET request will return a static HTML page. I also worked on the CRUD operation seen in the Crud.js file. This is seen as I contributed in writing the login register and deleteUser crud operations. 
+Nitish : I worked on creating all the GET express request so that each GET request will return a static HTML page. I also worked on the CRUD operation seen in the Crud.js file. This is seen as I contributed in writing the login register and deleteUser crud operations along with the event listeners that correspond to them. I also contributed to part of writing the posting a product crud operation and event listener. As a side point professor wanted me to say in the division of labor on how I had a wrist injury during most of this assignment which is why I might have been limited to my contributions to the team. Professor said this is fine but just mention it in this section.
 
 Alex:
 

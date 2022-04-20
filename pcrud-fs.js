@@ -204,7 +204,8 @@ app.post('/user/login', async (request, response) => {
 
 app.delete('/user/delete', async (request, response) => {
     const details = request.body;
-    deleteUser(response, users[0].id);
+    users = await reload(user_database);
+    deleteUser(response, users[users.length-1].id);
 });
 
 app.get('/login', async (request, response) => {
