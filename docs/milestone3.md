@@ -1,6 +1,8 @@
 # MongoDB Documentation
 
-product document
+##### product document
+
+```js
 {
     _id: <ObjectId1>,
     itemName: String,  // The name of the item
@@ -15,12 +17,17 @@ product document
     pickup: boolean, // availability of pickup
     payment: [String] // Preferred  payment methods
 }
+```
 
-user document
+
+##### user document
+
+```js
 {
   _id: <ObjectId1>,
   email: String, // User's email
   password: String // User's password
 }
+```
 
 # Breakdown of Labor
