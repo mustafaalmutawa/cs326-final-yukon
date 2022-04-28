@@ -18,19 +18,15 @@ const sessionConfig = {
   saveUninitialized: false,
 };
 
-const app = express();
-const port = process.env.PORT || 3000;
-
 class Server {
   constructor(dburl) {
     this.dburl = dburl;
     this.app = express();
-    this.app.use('/', express.static('client'));
-    this.pp.use(expressSession(sessionConfig));
+    this.app.use('/', express.static('./client'));
+    this.app.use(expressSession(sessionConfig));
     this.app.use(express.json());
     this.app.use(express.urlencoded({ extended: true }));
-    this.app.use(express.static('client'));
-    auth.configure(app);
+    auth.configure(this.app);
   }
  checkLoggedIn(req, res, next) {
   if (req.isAuthenticated()) {
@@ -44,19 +40,19 @@ class Server {
   async initRoutes() {
     const self = this;
     this.app.get('/product', async (request, response) => {
-      response.sendFile('/client/product.html', {root: __dirname })
+      response.sendFile('./client/product.html', {root: __dirname })
     });
     this.app.post('/product/new', async (request, response) => {
     });
     this.app.post('/product/buy', async (request, response) => {
     });
     this.app.get('/user', async (request, response) => {
-      response.sendFile('/client/user_profile.html', {root: __dirname })
+      response.sendFile('./client/user_profile.html', {root: __dirname })
     });
     this.app.post('/user/new', async (request, response) => {
       const { username, password } = req.body;
       if (users.addUser(username, password)) {
-        res.redirect('/client/user_profile.html');
+        res.redirect('./client/user_profile.html');
       } else {
         res.redirect('/register');
       }
@@ -66,23 +62,23 @@ class Server {
     this.app.post('/user/login', async (request, response) => {
       auth.authenticate('local', {
         // use username/password authentication
-        successRedirect: '/client/Homepage.html', // when we login, go to /private
-        failureRedirect: '/login.html', // otherwise, back to login
+        successRedirect: './client/Homepage.html', // when we login, go to /private
+        failureRedirect: './login.html', // otherwise, back to login
       })
     });
     this.app.delete('/user/delete', async (request, response) => {
     });
     this.app.get('/login', async (request, response) => {
-      response.sendFile('/client/Login.html', {root: __dirname })
+      response.sendFile('./client/Login.html', {root: __dirname })
     });
     this.app.get('/register', async (request, response) => {
-      response.sendFile('/client/register.html', {root: __dirname })
+      response.sendFile('./client/register.html', {root: __dirname })
     });
     this.app.get(['/homepage', '/'], async (request, response) => {
-      response.sendFile('/client/Homepage.html', {root: __dirname })
+      response.sendFile('./client/Homepage.html', {root: __dirname })
     });
     this.app.get('/listing', async (request, response) => {
-      response.sendFile('/client/listing.html', {root: __dirname })
+      response.sendFile('./client/listing.html', {root: __dirname })
     });
   }
   async initDb() {
