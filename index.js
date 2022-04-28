@@ -54,10 +54,21 @@ class Server {
       response.sendFile('/client/user_profile.html', {root: __dirname })
     });
     this.app.post('/user/new', async (request, response) => {
+      const { username, password } = req.body;
+      if (users.addUser(username, password)) {
+        res.redirect('/client/user_profile.html');
+      } else {
+        res.redirect('/register');
+      }
     });
     this.app.put('/user/update', async (request, response) => {
     });
     this.app.post('/user/login', async (request, response) => {
+      auth.authenticate('local', {
+        // use username/password authentication
+        successRedirect: '/client/Homepage.html', // when we login, go to /private
+        failureRedirect: '/login.html', // otherwise, back to login
+      })
     });
     this.app.delete('/user/delete', async (request, response) => {
     });

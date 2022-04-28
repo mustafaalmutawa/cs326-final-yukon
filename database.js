@@ -53,6 +53,7 @@ export class Database {
     this.client.release();
     await this.pool.end();
   }
+  
   async readAllProducts() {
     const queryText = 'SELECT * FROM ProductDatabase';
     const res = await this.client.query(queryText);
