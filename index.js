@@ -46,17 +46,18 @@ class Server {
     this.app.get('/product', async (request, response) => {
       response.sendFile('/client/product.html', {root: __dirname })
     });
-    this.app.post('/product/new', async (req, res) => {
+    this.app.post('/product/new', async (request, response) => {
     });
-    this.app.post('/product/buy', async (req, res) => {
+    this.app.post('/product/buy', async (request, response) => {
     });
-    this.app.get('/user', async (req, res) => {
+    this.app.get('/user', async (request, response) => {
       response.sendFile('/client/user_profile.html', {root: __dirname })
-
     });
-    this.app.post('/user/new', async (req, res) => {
+    this.app.post('/user/new', async (request, response) => {
     });
-    this.app.put('/user/update', async (req, res) => {
+    this.app.put('/user/update', async (request, response) => {
+    });
+    this.app.post('/user/login', async (request, response) => {
     });
     this.app.delete('/user/delete', async (request, response) => {
     });
@@ -72,21 +73,17 @@ class Server {
     this.app.get('/listing', async (request, response) => {
       response.sendFile('/client/listing.html', {root: __dirname })
     });
-  
-   
   }
-
   async initDb() {
     this.db = new Database(this.dburl);
     await this.db.connect();
   }
-
   async start() {
     await this.initRoutes();
     await this.initDb();
     const port = process.env.PORT || 3000;
     this.app.listen(port, () => {
-      console.log(`PeopleServer listening on port ${port}!`);
+      console.log(`Server listening on port ${port}!`);
     });
   }
 }
