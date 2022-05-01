@@ -17,7 +17,7 @@ const sessionConfig = {
   resave: false,
   saveUninitialized: false,
 };
-//
+
 class Server {
   constructor(dburl) {
     this.dburl = dburl;

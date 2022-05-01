@@ -70,7 +70,9 @@ export class Database {
 
     async deleteUser() {
         let usrs = await this.getAllUsers();
-        const res = await this.users.deleteOne({_id: usrs[usrs.length-1].id});
+        //console.log(usrs);
+        console.log(usrs[usrs.length-1]._id)
+        const res = await this.users.deleteOne({_id: usrs[usrs.length-1]._id});
         return res;
 
     }
