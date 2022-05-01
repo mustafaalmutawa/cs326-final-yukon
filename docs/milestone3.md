@@ -4,7 +4,7 @@
 
 ```js
 {
-    _id: Integer,
+    _id: ObjectId,
     itemName: String,  // The name of the item
     price: Double,  // Item's price
     category : String, // Item's categoruy
@@ -24,7 +24,7 @@
 
 ```js
 {
-  _id: Integer,
+  _id: ObjectId,
   email: String, // User's email
   password: String // User's password
 }
