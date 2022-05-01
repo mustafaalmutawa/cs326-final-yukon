@@ -88,6 +88,12 @@ class Server {
   async start() {
     await this.initRoutes();
     await this.initDb();
+    //--- testing ----
+    /*await this.db.createUser("example@gmail.com", "password");
+    console.log(await this.db.getAllUsers());
+    await this.db.createProduct("chair", 35, "furniture", "new", "chair ok", "", "Sylvan", false, 0, true, "venmo")
+    console.log(await this.db.getAllProducts());*/
+    //----------------
     const port = process.env.PORT || 3000;
     this.app.listen(port, () => {
       console.log(`Server listening on port ${port}!`);
