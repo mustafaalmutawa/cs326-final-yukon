@@ -50,11 +50,11 @@ class Server {
       response.sendFile('./client/user_profile.html', {root: __dirname })
     });
     this.app.post('/user/new', async (request, response) => {
-      const { username, password } = req.body;
+      const { username, password } = request.body;
       if (users.addUser(username, password)) {
-        res.redirect('./client/user_profile.html');
+        response.redirect('/user');
       } else {
-        res.redirect('/register');
+        response.redirect('/register');
       }
     });
     this.app.put('/user/update', async (request, response) => {
@@ -67,6 +67,9 @@ class Server {
       })
     });
     this.app.delete('/user/delete', async (request, response) => {
+      const id = await self.db.deleteUser();
+        response.send(JSON.stringify(id))
+        console.log(id);
     });
     this.app.get('/login', async (request, response) => {
       response.sendFile('./client/Login.html', {root: __dirname })
