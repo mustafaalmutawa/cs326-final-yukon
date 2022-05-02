@@ -49,11 +49,15 @@ export class Database {
     }
 
     async getProduct(id) {
-
+        let prod = await this.getAllProducts();
+        const res = await prod.find({_id: id});
+        return res;
     }
 
     async getUser(id) {
-
+        let usrs = await this.getAllUsers();
+        const res = await usrs.find({_id: id});
+        return res;
     }
 
     async updateProduct(id) {
