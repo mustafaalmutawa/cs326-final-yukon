@@ -26,6 +26,7 @@ class Server {
         this.app.use(expressSession(sessionConfig));
         this.app.use(express.json());
         this.app.use(express.urlencoded({ extended: true }));
+        this.app.set('view engine', 'ejs');
         auth.configure(this.app);
     }
 
@@ -44,7 +45,9 @@ class Server {
         const self = this;
 
         this.app.get('/product', async (request, response) => {
-            response.sendFile('./client/product.html', {root: __dirname })
+            const pid = request.query.id;
+            const res = await self.db.getProduct(pid);
+            response.render('product.ejs', res);
         });
 
         this.app.post('/product/new', async (request, response) => {
