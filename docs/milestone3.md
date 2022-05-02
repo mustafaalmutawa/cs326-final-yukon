@@ -25,7 +25,7 @@
 ```js
 {
   _id: ObjectId,
-  email: String, // User's email
+  username: String, // User's username
   password: String // User's password
 }
 ```
