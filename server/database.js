@@ -43,8 +43,8 @@ export class Database {
         return res;
     }
 
-    async createUser(email, password) {
-        const res = await this.users.insertOne({email, password});
+    async createUser(username, password) {
+        const res = await this.users.insertOne({username, password});
         return res;
     }
 
