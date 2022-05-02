@@ -1,6 +1,6 @@
 # MongoDB Documentation
 
-##### product document
+##### Document in products collection
 
 ```js
 {
@@ -20,7 +20,7 @@
 ```
 
 
-##### user document
+##### Document in users collection
 
 ```js
 {
