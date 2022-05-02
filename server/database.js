@@ -1,5 +1,5 @@
 import 'dotenv/config';
-import { MongoClient, ServerApiVersion } from 'mongodb';
+import { MongoClient, ServerApiVersion, ObjectId } from 'mongodb';
 
 export class Database {
     constructor(dburl) {
@@ -49,14 +49,12 @@ export class Database {
     }
 
     async getProduct(id) {
-        let prod = await this.getAllProducts();
-        const res = await prod.find({_id: id});
+        const res = await this.products.findOne({_id: ObjectId(id)});
         return res;
     }
 
     async getUser(id) {
-        let usrs = await this.getAllUsers();
-        const res = await usrs.find({_id: id});
+        const res = await this.users.findOne({_id: ObjectId(id)});
         return res;
     }
 
