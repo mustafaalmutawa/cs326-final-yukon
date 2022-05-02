@@ -68,6 +68,7 @@ class Server {
         });
 
         this.app.put('/user/update', async (request, response) => {
+            response.status(200).json({sucess: 'updated'});
         });
 
         this.app.post('/user/login', auth.authenticate('local', {
