@@ -61,10 +61,10 @@ class Server {
         this.app.post('/user/new', async (request, response) => {
             const { username, password } = request.body;
             if (users.addUser(username, password)) {
-                response.redirect('/login');
+                response.redirect('../client/user_profile.html');
             } 
             else {
-                response.redirect('/register');
+                response.redirect('../client/register.html');
             }
         });
 
@@ -74,7 +74,7 @@ class Server {
 
         this.app.post('/user/login', auth.authenticate('local', {
                 // use username/password authentication
-                successRedirect: '../client/user_profile.html', // when we login, go to /private
+                successRedirect: '../client/Homepage.html', // when we login, go to /private
                 failureRedirect: '../client/Login.html', // otherwise, back to login
             })
         );
