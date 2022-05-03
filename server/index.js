@@ -4,12 +4,12 @@ import expressSession from 'express-session';
 import users from './users.js';
 import auth from './auth.js';
 import { fileURLToPath } from 'url';
-import path  from 'path';
+import { dirname } from 'path';
 import { Database } from './database.js';
 
 // We will use __dirname later on to send files back to the client.
 const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.resolve();
+const __dirname = dirname(dirname(__filename));
 
 const sessionConfig = {
   // set this encryption key in Heroku config (never in GitHub)!
@@ -22,8 +22,7 @@ class Server {
     constructor(dburl) {
         this.dburl = dburl;
         this.app = express();
-        //this.app.use('/', express.static('./client'));
-        this.app.use('/client', express.static(path.join(__dirname,'client')));
+        this.app.use('/', express.static('./client'));
         this.app.use(expressSession(sessionConfig));
         this.app.use(express.json());
         this.app.use(express.urlencoded({ extended: true }));
@@ -61,10 +60,10 @@ class Server {
         this.app.post('/user/new', async (request, response) => {
             const { username, password } = request.body;
             if (users.addUser(username, password)) {
-                response.redirect('../client/user_profile.html');
+                response.redirect('/login');
             } 
             else {
-                response.redirect('../client/register.html');
+                response.redirect('/register');
             }
         });
 
@@ -74,8 +73,8 @@ class Server {
 
         this.app.post('/user/login', auth.authenticate('local', {
                 // use username/password authentication
-                successRedirect: '../client/Homepage.html', // when we login, go to /private
-                failureRedirect: '../client/Login.html', // otherwise, back to login
+                successRedirect: '../client/user_profile.html', // when we login, go to /private
+                failureRedirect: './client/user_profile.html', // otherwise, back to login
             })
         );
 
