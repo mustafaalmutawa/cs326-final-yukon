@@ -73,8 +73,8 @@ class Server {
 
         this.app.post('/user/login', auth.authenticate('local', {
                 // use username/password authentication
-                successRedirect: '../client/user_profile.html', // when we login, go to /private
-                failureRedirect: './client/user_profile.html', // otherwise, back to login
+                successRedirect: '../user', // when we login, go to /private
+                failureRedirect: '../login', // otherwise, back to login
             })
         );
 
