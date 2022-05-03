@@ -85,7 +85,6 @@ for (let i = 1; i <= userProducts_num; i++) {
     updateProduct_button.addEventListener('click', async (e) => {
       productToUpdate = i;
       window.location.href = "update_listing.html";
-    console.log(productToUpdate);
     });
   }
 }
@@ -94,8 +93,6 @@ if (updateListing_button !== null) {
   updateListing_button.addEventListener('click', async (e) => {
     const itemName = document.getElementById("itemName").value;
     const price = document.getElementById("price").value;
-    console.log("name: " + itemName);
-    console.log("price: " + price);
 
     const selectedCategory = document.getElementById("category");
     const category = selectedCategory.options[selectedCategory.selectedIndex].text;
@@ -114,9 +111,10 @@ if (updateListing_button !== null) {
     if (shipping) {
       shippingPrice = document.getElementById("shipping_price").value;
     }
-
     const pickup = document.getElementById("pickup").checked;
+
     const selectedPayment = document.getElementById("pPayement").selectedOptions
     const payment = Array.from(selectedPayment).map(o => o.value);
+    await crud.updateProduct(productToUpdate, itemName, price, category, condition, description, images, location, shipping, shippingPrice, pickup, payment)
   });
 }

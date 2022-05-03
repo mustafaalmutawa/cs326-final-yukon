@@ -58,8 +58,15 @@ export class Database {
         return res;
     }
 
-    async updateProduct(id) {
+    async updateProduct(id, itemName, price, category, condition, description, 
+    images, location, shipping, shippingPrice, pickup, payment) {
 
+        const res = await this.products.updateOne({_id: id}, {$set: {itemName: itemName, price: price, 
+        category: category, condition: condition, description: description, images: images, 
+        location: location, shipping: shipping, shippingPrice: shippingPrice, pickup: pickup, 
+        payment: payment}});
+
+        return res;
     }
 
     async updateUser(id) {

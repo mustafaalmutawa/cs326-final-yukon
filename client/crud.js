@@ -79,6 +79,25 @@ export async function updateName(name) {
     console.log(err);
   }
 }
+
+export async function updateProduct(productToUpdate, itemName, price, category, condition, description, images, location, shipping, shippingPrice, pickup, payment) {
+  const details = {produtId: productToUpdate, "itemName": itemName, "price": price, "category": category, 
+  "condition": condition, "description": description, "images": images,
+  "location": location, "shipping": shipping, "shippingPrice": shippingPrice,
+  "pickup": pickup, "payment": payment}
+
+  const response = await fetch(`/product/update`,{
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(details)
+    }
+  );
+  const data = await response.json();
+  return data;
+}
+
 export async function deleteUser() {
   const response = await fetch(`/user/delete`, {
     method: 'DELETE',
