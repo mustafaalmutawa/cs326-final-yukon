@@ -57,8 +57,8 @@ class Server {
         });
 
         this.app.get('/user', async (request, response) => {
-            const id = request.query.id;
-            const res = await self.db.getUser(id);
+            //Note: usernames are assumed to be unique
+            const res = await self.db.getUserByName(request.user.username);
             response.render('user_profile.ejs', res);
         });
 

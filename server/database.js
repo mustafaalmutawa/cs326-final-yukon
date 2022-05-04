@@ -58,6 +58,11 @@ export class Database {
         return res;
     }
 
+    async getUserByName(name) {
+        const res = await this.users.findOne({name: name});
+        return res;
+    }
+
     async updateProduct(id) {
 
     }
