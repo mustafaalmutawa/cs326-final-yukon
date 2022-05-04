@@ -100,27 +100,33 @@
                 <tbody>
                   <tr>
                     <th scope="row">Condition</th>
-                    <td>Good</td>
+                    <td><%= condition %></td>
                   </tr>
                   <tr>
                     <th scope="row">Category</th>
-                    <td>Clothing & Fashion</td>
+                    <td><%= category %></td>
+                  </tr>
+                  <tr>
+                    <th scope="row">Location</th>
+                    <td><%= location %></td>
                   </tr>
                   <tr>
                     <th scope="row">Preferred Payment</th>
-                    <td>Venmo</td>
-                  </tr>
-                  <tr>
-                    <th scope="row">Posted</th>
-                    <td>9/7/2021</td>
+                    <td><%= payment %></td>
                   </tr>
                   <tr>
                     <th scope="row">Shipping</th>
-                    <td>$5.00</td>
+                    <td>$<%= shippingPrice %></td>
                   </tr>
                   <tr>
                     <th scope="row">Pickup?</th>
-                    <td>Yes</td>
+                    <td>
+                      <% if (pickup) { %>
+                        <%= 'Yes' %>
+                      <% } else { %>
+                        <%= 'No' %>
+                      <% } %>
+                    </td>
                   </tr>
                 </tbody>
               </table>
@@ -131,13 +137,13 @@
           <div class="product-heading">
             <i>New! Posted 5 minutes ago.</i>
             <br>
-            <span class="badge badge-pill badge-primary">Local Pickup</span>
-            <span class="badge badge-pill badge-success">$5 Shipping</span>
+            <span class="badge badge-pill badge-primary"><%= payment %></span>
+            <span class="badge badge-pill badge-success">$<%= shippingPrice %> Shipping</span>
           </div>
           <div class="product-title">
-            <h4 id="price">$77</h4>
-            <h1 id="product-title">Cool old sneakers</h1>
-            <i>Brand: Puma</i>
+            <h4 id="price">$<%= price %></h4>
+            <h1 id="product-title"><%= itemName %></h1>
+            <i>Brand: <%= brand %></i>
           </div>
           <div class="buy-product">
             <button type="button" class="btn btn-secondary btn-lg" id="atc">Add To Cart</button>
@@ -147,8 +153,7 @@
             <h5>Description</h5>
             <hr>
             <p id="description">
-              At odit beatae ut ad consequatur. Impedit reiciendis qui illo aperiam. Harum consequuntur facilis voluptatem qui quia sunt consequatur voluptatum.
-              Corporis nobis laborum debitis.
+              <%= description %>
             </p>
           </div>
         </div>
