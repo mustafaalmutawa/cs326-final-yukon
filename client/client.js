@@ -11,27 +11,6 @@ const updateListing_button = document.getElementById('update_listing');
 const userProducts_num = document.getElementsByClassName('product').length;
 let productToUpdate = 0;
 
-
-
-if (login_button !== null) {
-  login_button.addEventListener('click', async (e) => {
-    const email = email_field.value;
-    const password = password_field.value;
-    await crud.login(email, password);
-    window.location.href = "Homepage.html";
-  });
-}
-
-if (register_button !== null) {
-  register_button.addEventListener('click', async (e) => {
-    const email = document.getElementById("email").value;
-    const username = document.getElementById("username").value;
-    const password = document.getElementById("password").value;
-    await crud.register(username,email, password);
-    window.location.href = "user_profile.html";
-  });
-}
-
 if (delete_button !== null) {
   delete_button.addEventListener('click', async(e) => {
   await crud.deleteUser();

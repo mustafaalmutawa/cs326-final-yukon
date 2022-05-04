@@ -57,7 +57,9 @@ class Server {
         });
 
         this.app.get('/user', async (request, response) => {
-            response.sendFile('./client/user_profile.html', {root: __dirname })
+            const id = request.query.id;
+            const res = await self.db.getUser(id);
+            response.render('user_profile.ejs', res);
         });
 
         this.app.post('/user/new', async (request, response) => {
