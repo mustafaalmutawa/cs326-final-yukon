@@ -95,5 +95,6 @@ if (updateListing_button !== null) {
     const selectedPayment = document.getElementById("pPayement").selectedOptions
     const payment = Array.from(selectedPayment).map(o => o.value);
     await crud.updateProduct(productToUpdate, itemName, price, category, condition, description, images, location, shipping, shippingPrice, pickup, payment)
+    window.location.href = "user_profile.html";
   });
 }
