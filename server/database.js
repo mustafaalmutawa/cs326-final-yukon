@@ -30,17 +30,13 @@ export class Database {
         this.client.close();
     }
 
-    async createProduct(itemName, price, category, condition, description, 
-    images, location, shipping, shippingPrice, pickup, payment) {
-
-        const res = await this.products.insertOne({itemName, price, 
-        category, condition, description, images, location, shipping, 
-        shippingPrice, pickup, payment});
+    async createProduct(product_obj){
+        const res = await this.products.insertOne(product_obj);
 
         // Note: the result received back from MongoDB does not contain the
         // entire document that was inserted into the database. Instead, it
         // only contains the _id of the document (and an acknowledged field).
-        return res;
+        return res.insertedId.toString();
     }
 
     async createUser(username, password) {
