@@ -8,8 +8,9 @@ const listing_button = document.getElementById("create_listing");
 const delete_button = document.getElementById("delete_button")
 const updateName_button = document.getElementById('update_name');
 const updateListing_button = document.getElementById('update_listing');
-const userProducts_num = document.getElementsByClassName('product').length;
+const updateProduct_buttons = document.getElementsByClassName('updateProduct');
 let productToUpdate = 0;
+
 
 if (delete_button !== null) {
   delete_button.addEventListener('click', async(e) => {
@@ -58,11 +59,10 @@ if (updateName_button !== null) {
   });
 }
 
-for (let i = 1; i <= userProducts_num; i++) {
-  const updateProduct_button = document.getElementById(`updateProduct${i}`);
-  if (updateProduct_button !== null) {
-    updateProduct_button.addEventListener('click', async (e) => {
-      productToUpdate = i;
+if (updateProduct_buttons != null) {
+  for (const button of updateProduct_buttons) {
+    button.addEventListener('click', async (e) => {
+      productToUpdate = e.target.id;
       window.location.href = "update_listing.html";
     });
   }
