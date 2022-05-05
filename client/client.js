@@ -45,7 +45,7 @@ if (listing_button !== null) {
     const selectedPayment = document.getElementById("pPayement").selectedOptions
     const payment = Array.from(selectedPayment).map(o => o.value);
 
-    const product_data = await crud.createProduct(itemName, price, category, condition, description, images, location, shipping, shippingPrice, pickup, payment);
+    const pid = await crud.createProduct(itemName, price, category, condition, description, images, location, shipping, shippingPrice, pickup, payment);
     window.location.href = "user_profile.html";
   });
 }
