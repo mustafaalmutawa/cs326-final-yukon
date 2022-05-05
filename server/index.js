@@ -50,7 +50,10 @@ class Server {
             response.render('product.ejs', res);
         });
 
-        this.app.post('/product/new', async (request, response) => {
+        this.app.post('/product/new', async (req, res) => {
+            //returned id is the string portion of the ObjectId
+            const id = await this.db.createProduct(req.body);
+            res.json({id: id});    
         });
 
         this.app.post('/product/buy', async (request, response) => {
@@ -104,6 +107,10 @@ class Server {
         this.app.get('/listing', async (request, response) => {
             response.sendFile('./client/listing.html', {root: __dirname })
         });
+
+        this.app.get('redirect/homepage', async (req, res) => {
+            res.redirect('homepage')
+        });
     }
 
     async initDb() {
@@ -112,8 +119,8 @@ class Server {
     }
 
     async start() {
-        await this.initRoutes();
         await this.initDb();
+        await this.initRoutes();   
         //--- testing ----
         /*await this.db.createUser("example@gmail.com", "password");
         console.log(await this.db.getAllUsers());
