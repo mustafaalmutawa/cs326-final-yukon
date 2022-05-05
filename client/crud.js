@@ -42,7 +42,7 @@ export async function createProduct(itemName,price,category,condition,descriptio
     }
   );
   const data = await response.json();
-  return data;
+  return data.id;
 }
 
 export async function getUserProfile() {
