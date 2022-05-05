@@ -63,6 +63,7 @@ if (updateProduct_buttons != null) {
   for (const button of updateProduct_buttons) {
     button.addEventListener('click', async (e) => {
       productToUpdate = e.target.id;
+      await crud.getUpdateListingPage();
       window.location.href = "update_listing.html";
     });
   }

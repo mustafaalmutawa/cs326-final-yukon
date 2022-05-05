@@ -108,6 +108,9 @@ class Server {
         this.app.get('/listing', async (request, response) => {
             response.sendFile('./client/listing.html', {root: __dirname })
         });
+        this.app.get('/listing/update', async (request, response) => {
+            response.sendFile('./client/update_listing.html', {root: __dirname })
+        });
     }
 
     async initDb() {
