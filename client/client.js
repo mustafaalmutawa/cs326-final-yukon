@@ -1,4 +1,5 @@
 import * as crud from './crud.js';
+import { makeImages } from './Homepage.js';
 
 const register_button = document.getElementById("register_button");
 const login_button = document.getElementById('login_button');
@@ -30,7 +31,7 @@ if (listing_button !== null) {
     const condition = selectedCondition.options[selectedCondition.selectedIndex].text;
 
     const description = document.getElementById("description").value;
-    const images = document.getElementById("images").files;
+    const inputImages = document.getElementById("images").files;
 
     const selectedLocation = document.getElementById("location");
     const location = selectedLocation.options[selectedLocation.selectedIndex].text;
@@ -45,8 +46,10 @@ if (listing_button !== null) {
     const selectedPayment = document.getElementById("pPayement").selectedOptions
     const payment = Array.from(selectedPayment).map(o => o.value);
 
+    const images = await imagesToURLs(inputImages);
+
     const pid = await crud.createProduct(itemName, price, category, condition, description, images, location, shipping, shippingPrice, pickup, payment);
-    window.location.href = "user_profile.html";
+    window.location.href = "Homepage.html";
   });
 }
 
@@ -98,4 +101,24 @@ if (updateListing_button !== null) {
     const selectedPayment = document.getElementById("pPayement").selectedOptions
     const payment = Array.from(selectedPayment).map(o => o.value);
   });
+}
+
+function imagesToURLsHelper(image) {
+    return new Promise(function (resolve, reject) {
+        let fr = new FileReader();
+        fr.onload = function (event) {
+            resolve(event.target.result);
+        }
+        fr.readAsDataURL(image);
+    });
+}
+
+async function imagesToURLs(image_files) {
+    let images_arr = Array.prototype.slice.call(image_files);
+    try {
+        const arr = await Promise.all(images_arr.map(image => imagesToURLsHelper(image)));
+        return arr;
+    } catch (err) {
+        console.log(err);
+    }  
 }
