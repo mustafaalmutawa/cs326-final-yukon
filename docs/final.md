@@ -131,3 +131,5 @@ Alex: Mustafa and I created the MongoDB database, and used the code from lecture
 
 # Conclusion
 Overall, I am happy with what we completed on this project. Our UI looks great and our application is mostly functional. Learning to piece together the front end, with a database and deploy to Heroku was a very formative experience. If we could have done it again, it would have been useful to limit our scope as we took on a pretty signifigant sized project. I think this made it difficult to finalize all the features we initially intended to have. For example, although we wrote all the database logic, and our products dyanmically render, we didn't budget enough time to implement search from our homepage, or link auth to mongo. Overall, I am very happy with our team's hardwork and very proud of what we accomplished. Working as a team isn't always easy, and I think we did a great job combining async work with pretty regular weekly team meetups.
+
+Heroku: https://cs326-final-yukon.herokuapp.com/
