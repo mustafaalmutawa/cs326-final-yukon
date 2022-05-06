@@ -30,3 +30,5 @@
   password: String // User's password
 }
 ```
+# Division of Labor
+ Nitish: I helped setup the server code along with working on authentication. I also wrote the delete user endpoint work properly with the mongo database. While also helping refactor certain parts of the code. 
