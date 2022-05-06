@@ -34,6 +34,9 @@ This endpoint is a POST request, which will allow the user to create a new produ
 <strong>/product/buy</strong>
 An endpoint via POST that a user will use to “buy” items. The data for checkout and the product being purchased will be contained in the JSON body of the request.
 
+<strong>/product/update</strong>
+This PUT endpoint allows the user to update an existing product listing. The updated information is sent through the body of the request as a JSON object.
+
 <strong>/product/delete?id=1234</strong>
 This endpoint uses the DELETE method to delete the product with the unique product id.
 
@@ -60,3 +63,9 @@ This endpoint uses the GET request to retrieve the Homepage HTML page
 
 <strong>/listing</strong>
 This endpoints uses the GET request to the Create Listing HTML page
+
+# Authentication/Authorization
+
+# Division of Labor
+
+# Conclusion

@@ -29,5 +29,3 @@
   password: String // User's password
 }
 ```
-
-# Breakdown of Labor
