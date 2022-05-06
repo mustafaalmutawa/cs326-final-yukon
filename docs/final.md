@@ -39,6 +39,11 @@ The user profile page shows the user's own listings as well as their rating. add
 
 <br>
 
+### Product Page
+![Screen Shot 2022-05-06 at 21 53 12](https://user-images.githubusercontent.com/40669187/167201012-8a0d9247-6d0b-4762-97e4-87bab0c212e6.png)
+
+The product page shows the all the product's information. This includes product images and description as well as details like condition, preferred payment method, availavility of shipping, and so on.
+
 ### Add Listing Page
 <img width="1440" alt="sk__rmbillede_2022-05-06_kl _13 39 01" src="https://user-images.githubusercontent.com/40669187/167196970-20f3e6f4-3ac5-467d-b87c-1d3f1e34602c.png">
 
