@@ -76,6 +76,39 @@ The login page is for existing users to log in to their accounts.
 * updateProduct(productToUpdate, itemName, price, category, condition, description, * images, location, shipping, shippingPrice, pickup, payment)
 * deleteUser()
 
+# MongoDB Documentation
+
+##### Document in products collection
+
+```js
+{
+    _id: ObjectId,
+    itemName: String,  // The name of the item
+    price: Double,  // Item's price
+    category : String, // Item's categoruy
+    condition : String, // Item's condition
+    description : String, // Item's description
+    images : [Binary], // Images for item page
+    location: String, // Location of item
+    shipping: boolean, // availability of shipping
+    shippingPrice: double, // price of shipping
+    pickup: boolean, // availability of pickup
+    payment: [String], // Preferred  payment methods
+    brand: String
+}
+```
+
+
+##### Document in users collection
+
+```js
+{
+  _id: ObjectId,
+  username: String, // User's username
+  password: String // User's password
+}
+```
+
 <br>
 
 # URL Routes/Mappings
