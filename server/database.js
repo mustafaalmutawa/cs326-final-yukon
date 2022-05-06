@@ -81,8 +81,8 @@ export class Database {
 
     }
 
-    async addProductHTML(id, html) {
-        const res = await this.listingsHTML.insertOne({_id: ObjectId(id), html: html});
+    async addProductHTML(id, html, url) {
+        const res = await this.listingsHTML.insertOne({_id: ObjectId(id), url: url, html: html});
         return res;
     }
 
