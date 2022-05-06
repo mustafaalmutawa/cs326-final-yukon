@@ -58,7 +58,7 @@
                 <% } else { %>
                   <div class="carousel-item">
                 <% } %>
-                  <img src="data:image/png;base64,<%= images[i] %>" alt="Product Image"/>
+                  <img src="<%= images[i] %>" alt="Product Image"/>
                 </div>
               <% } %>
             </div>
@@ -145,8 +145,7 @@
           </div>
           <div class="product-title">
             <h4 id="price">$<%= price %></h4>
-            <h1 id="product-title"><%= itemName %></h1>
-            <i>Brand: <%= brand %></i>
+            <h1 id="product-title"><%= itemName %></h1>    
           </div>
           <div class="buy-product">
             <button type="button" class="btn btn-secondary btn-lg" id="atc">Add To Cart</button>
