@@ -56,7 +56,7 @@ export class Database {
     }
 
     async getUserByName(name) {
-        const res = await this.users.findOne({name: name});
+        const res = await this.users.findOne({username: name});
         return res;
     }
 
