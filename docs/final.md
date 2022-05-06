@@ -22,6 +22,15 @@ Nitish Bodicharla: @nbodicharla
 # User Interface
 
 # API
+* login(username, password)
+* register(username,email, password)
+* createProduct(itemName,price,category,condition,description,images,location,* shipping,shippingPrice,pickup,payment)
+* getUserProfile()
+* getProduct()
+* getUpdateListingPage()
+* updateName(name)
+* updateProduct(productToUpdate, itemName, price, category, condition, description, * images, location, shipping, shippingPrice, pickup, payment)
+* deleteUser()
 
 # URL Routes/Mappings
 
