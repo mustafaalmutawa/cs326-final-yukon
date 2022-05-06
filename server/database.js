@@ -23,6 +23,7 @@ export class Database {
     async init() {
         this.products = this.db.collection('products');
         this.users = this.db.collection('users');
+        this.listingsHTML = this.db.collection('listingsHTML');
     }
 
     // Close the pool.
@@ -30,17 +31,13 @@ export class Database {
         this.client.close();
     }
 
-    async createProduct(itemName, price, category, condition, description, 
-    images, location, shipping, shippingPrice, pickup, payment) {
-
-        const res = await this.products.insertOne({itemName, price, 
-        category, condition, description, images, location, shipping, 
-        shippingPrice, pickup, payment});
+    async createProduct(product_obj){
+        const res = await this.products.insertOne(product_obj);
 
         // Note: the result received back from MongoDB does not contain the
         // entire document that was inserted into the database. Instead, it
         // only contains the _id of the document (and an acknowledged field).
-        return res;
+        return res.insertedId.toString();
     }
 
     async createUser(username, password) {
@@ -55,6 +52,11 @@ export class Database {
 
     async getUser(id) {
         const res = await this.users.findOne({_id: ObjectId(id)});
+        return res;
+    }
+
+    async getUserByName(name) {
+        const res = await this.users.findOne({name: name});
         return res;
     }
 
@@ -85,6 +87,16 @@ export class Database {
         return res;
     }
 
+    async addProductHTML(id, html, url) {
+        const res = await this.listingsHTML.insertOne({_id: ObjectId(id), url: url, html: html});
+        return res;
+    }
+
+    async getMostRecentProduct() {
+        const res = await this.getAllProducts();
+        return res[res.length - 1];
+    }
+
     async getAllProducts() {
         const res = await this.products.find({}).toArray();
         return res;
@@ -92,6 +104,11 @@ export class Database {
 
     async getAllUsers() {
         const res = await this.users.find({}).toArray();
+        return res;
+    }
+
+    async getAllHTMLListings() {
+        const res = await this.listingsHTML.find({}).toArray();
         return res;
     }
 }

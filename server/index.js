@@ -24,8 +24,9 @@ class Server {
         this.app = express();
         this.app.use('/', express.static('./client'));
         this.app.use(expressSession(sessionConfig));
-        this.app.use(express.json());
+        this.app.use(express.json({limit: '100mb'}));
         this.app.use(express.urlencoded({ extended: true }));
+        this.app.set('view engine', 'ejs');
         auth.configure(this.app);
     }
 
@@ -44,17 +45,44 @@ class Server {
         const self = this;
 
         this.app.get('/product', async (request, response) => {
-            response.sendFile('./client/product.html', {root: __dirname })
+            const pid = request.query.id;
+            const res = await self.db.getProduct(pid);
+            response.render('product.ejs', res);
         });
 
-        this.app.post('/product/new', async (request, response) => {
+        this.app.get('/product/recent', async (request, response) => {
+            const res = await self.db.getMostRecentProduct();
+            response.json(res);
         });
+
+        this.app.post('/product/new', async (req, res) => {
+            //returned id is the string portion of the ObjectId
+            const id = await this.db.createProduct(req.body);
+            res.json({id: id});    
+        });
+
+        this.app.post('/product/html', async (req, res) => {
+            const data = req.body;
+            await this.db.addProductHTML(data.id, data.html, data.url);   
+        });
+
+        this.app.get('/product/all', async (request, response) => {
+            const res = await self.db.getAllHTMLListings();
+            response.json(res);
+        })
+
+        this.app.get('/products', async (request, response) => {
+            const res = await self.db.getAllProducts();
+            response.json(res);
+        })
 
         this.app.post('/product/buy', async (request, response) => {
         });
 
         this.app.get('/user', async (request, response) => {
-            response.sendFile('./client/user_profile.html', {root: __dirname })
+            //Note: usernames are assumed to be unique
+            const res = await self.db.getUserByName(request.user.username);
+            response.render('user_profile.ejs', res);
         });
 
         this.app.post('/user/new', async (request, response) => {
@@ -107,6 +135,7 @@ class Server {
         this.app.get('/listing', async (request, response) => {
             response.sendFile('./client/listing.html', {root: __dirname })
         });
+        
         this.app.get('/listing/update', async (request, response) => {
             response.sendFile('./client/update_listing.html', {root: __dirname })
         });
@@ -118,8 +147,8 @@ class Server {
     }
 
     async start() {
-        await this.initRoutes();
         await this.initDb();
+        await this.initRoutes();   
         //--- testing ----
         /*await this.db.createUser("example@gmail.com", "password");
         console.log(await this.db.getAllUsers());

@@ -42,7 +42,7 @@ export async function createProduct(itemName,price,category,condition,descriptio
     }
   );
   const data = await response.json();
-  return data;
+  return data.id;
 }
 
 export async function getUserProfile() {
@@ -57,9 +57,20 @@ export async function getUserProfile() {
   }
 }
 
-export async function getProduct() {
+export async function getProduct(id) {
+    try {
+      const response = await fetch(`/product?id=${id}`, {
+        method: 'GET',
+      });
+      return response.url;
+    } catch (err) {
+      console.log(err);
+    }
+}
+
+export async function getProductById(id) {
   try {
-    const response = await fetch(`/product`, {
+    const response = await fetch(`/product?id=${id}`, {
       method: 'GET',
     });
     const data = await response.json();
@@ -79,6 +90,58 @@ export async function getUpdateListingPage() {
   } catch (err) {
     console.log(err);
   }
+}
+
+export async function getAllProducts() {
+    try {
+      const response = await fetch(`/products`, {
+        method: 'GET',
+      });
+      const data = await response.json();
+      return data;
+    } catch (err) {
+      console.log(err);
+    }
+}
+
+export async function getMostRecentProduct() {
+    try {
+      const response = await fetch(`/product/recent`, {
+        method: 'GET',
+      });
+      const data = await response.json();
+      return data;
+    } catch (err) {
+      console.log(err);
+    }
+}
+
+export async function addHTMLToDB(productHTML, id, productURL) {
+    try {
+        const response = await fetch(`/product/html`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({id: id, url: productURL, html: productHTML})
+        });
+      const data = await response.json();
+      return data;
+    } catch (err) {
+      console.log(err);
+    }
+}
+
+export async function loadListings() {
+    try {
+        const response = await fetch(`/product/all`, {
+            method: 'GET'
+        });
+      const data = await response.json();
+      return data;
+    } catch (err) {
+      console.log(err);
+    }
 }
 
 export async function updateName(name) {
@@ -119,4 +182,4 @@ export async function deleteUser() {
   });
   const data = await response.json();
   return data;
-  }
+}

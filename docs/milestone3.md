@@ -15,7 +15,8 @@
     shipping: boolean, // availability of shipping
     shippingPrice: double, // price of shipping
     pickup: boolean, // availability of pickup
-    payment: [String] // Preferred  payment methods
+    payment: [String], // Preferred  payment methods
+    brand: String
 }
 ```
 
