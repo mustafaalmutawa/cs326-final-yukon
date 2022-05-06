@@ -1,4 +1,4 @@
-# Yukon
+# Team Yukon
 
 ## USell
 
@@ -28,28 +28,28 @@ Nitish Bodicharla: @nbodicharla
 # User Interface
 ### Homepage
 <img width="1437" alt="sk__rmbillede_2022-05-06_kl _13 38 50" src="https://user-images.githubusercontent.com/40669187/167196835-334d4ebc-09f8-4f32-adc2-42366cf0743b.png">
-The homepage shows all the product listings. Additionally. On the left side are yhe filtering options. The navigation bar on the top has links to add a listing, login, and join.
+The homepage shows all the product listings. It's the main landing pge of our app. Additionally. The left side contains filtering options. The navigation bar on the top has links to add a listing, login, and join.
 
 <br>
 
 ### User Profile
 <img width="1301" alt="sk__rmbillede_2022-05-06_kl _13 41 03" src="https://user-images.githubusercontent.com/40669187/167196881-778cda62-afe0-4d5c-b7e6-d1390cc95de0.png">
 
-The user profile page shows the user's own listings as well as their rating. additionally, it allows the user to make updates to their listings, update the profile name, and delete the account.
+The user profile page shows the user's own listings as well as their rating. Additionally, it allows the user to make updates to their listings, update the profile name, and delete the account.
 
 <br>
 
 ### Product Page
 ![Screen Shot 2022-05-06 at 21 53 12](https://user-images.githubusercontent.com/40669187/167201012-8a0d9247-6d0b-4762-97e4-87bab0c212e6.png)
 
-The product page shows the all the product's information. This includes product images and description as well as details like condition, preferred payment method, availavility of shipping, and so on.
+The product page shows the product's information. This includes the product's images and description as well as details like its condition, the preferred payment method, availavility of shipping, etc.
 
 <br>
 
 ### Add Listing Page
 <img width="1440" alt="sk__rmbillede_2022-05-06_kl _13 39 01" src="https://user-images.githubusercontent.com/40669187/167196970-20f3e6f4-3ac5-467d-b87c-1d3f1e34602c.png">
 
-The add listing page allows the user to create a new listing. It takes in information about the product (name, price, images, etc.) and dynamically add the product to the homepage.
+The add listing page allows the user to create a new listing. It takes in information about the product (name, price, images, etc.) and dynamically adds the product to the homepage.
 
 <br>
 
@@ -61,7 +61,7 @@ The registration page is for new users to create an account. It requires a usern
 
 ### Login Page
 <img width="1440" alt="sk__rmbillede_2022-05-06_kl _13 39 13" src="https://user-images.githubusercontent.com/40669187/167197040-c8b70127-40f5-4eec-8465-184ecc384993.png">
-The login page is for existing users to log in to their accounts.
+The login page is for existing users to log in to their account.
 
 <br>
 
@@ -82,7 +82,7 @@ The login page is for existing users to log in to their accounts.
 
 ```js
 {
-    _id: ObjectId,
+    _id: ObjectId, // Item's unique id
     itemName: String,  // The name of the item
     price: Double,  // Item's price
     category : String, // Item's categoruy
@@ -103,9 +103,19 @@ The login page is for existing users to log in to their accounts.
 
 ```js
 {
-  _id: ObjectId,
+  _id: ObjectId, // User's unique id
   username: String, // User's username
   password: String // User's password
+}
+```
+
+##### Document in listingsHTML collection
+
+```js
+{
+  _id: ObjectId, // This id is the same as the corresponding product id
+  url: String, // URL for the product page of the corresponding product
+  html: String, // The HTML of the listing for the corresponding product
 }
 ```
 
@@ -137,20 +147,35 @@ The register request simply allows the user to create a new profile via POST. Th
 <strong>/user/login</strong>
 This endpoint is for existing users. It will work similarly to the /user/new endpoint, but it is a PUT request.
 
+<strong>/user/update</strong>
+This PUT endpoint allows the user to update their profile.
+
 <strong>/user/delete</strong>
 This endpoint uses the DELETE method to delete the user that was just created after registration.
 
 <strong>/login</strong>
-This endpoint uses the GET request to retrieve the Login HTML page
+This endpoint uses the GET request to retrieve the Login HTML page.
 
 <strong>/register</strong>
-This endpoint uses the GET request to retrieve the Register HTML page
+This endpoint uses the GET request to retrieve the Register HTML page.
 
 <strong>/homepage</strong>
-This endpoint uses the GET request to retrieve the Homepage HTML page
+This endpoint uses the GET request to retrieve the Homepage HTML page.
 
 <strong>/listing</strong>
-This endpoints uses the GET request to the Create Listing HTML page
+This endpoints uses the GET request to the Create Listing HTML page.
+
+<strong>/product/recent</strong>
+This endpoint uses the GET request to retrieve the most recently added product.
+
+<strong>/product/html</strong>
+This endpoint uses the POST request to add a product's HTML to the database.
+
+<strong>/product/all</strong>
+This endpoint uses the GET request to retrieve all product HTMLs in the database.
+
+<strong>/products</strong>
+This endpoint uses the GET request to retrieve all products in the database.
 
 <br>
 
