@@ -1,60 +1,41 @@
+import {addHTMLToDB, getMostRecentProduct, loadListings, getAllProducts} from './crud.js'
 
 $(document).ready(async function() {
-    //localStorage.removeItem("homepage_listings")
-    reload();
-    const product = JSON.parse(localStorage.getItem("product"));
-    const urls = JSON.parse(localStorage.getItem("image_files"));
-    const final_images = [];
-
-    if (product !== null && urls !== null) {
-        for (const url of urls) {
-            const image = new Image();
-            image.src = url;
-            final_images.push(image);
-        }
-        localStorage.removeItem("product");
-        localStorage.removeItem("image_files");
-        addHomepageListing(product, final_images);
+    const grid_row_wrapper = document.getElementById("row");
+    const products = await getAllProducts();
+    const listingsHTML = await loadListings();
+    for (const obj of listingsHTML) {
+        grid_row_wrapper.innerHTML += obj.html;
     }
+    if (products.length > listingsHTML.length) {
+        await addHomepageListing(products.length);
+    }   
 });
 
-function imagesToURLsHelper(image) {
-    return new Promise(function (resolve, reject) {
-        let fr = new FileReader();
-        fr.onload = function (event) {
-            resolve(event.target.result);
-        }
-        fr.readAsDataURL(image);
-    });
+async function addToDatabase(productHTML, id) {
+    await addHTMLToDB(productHTML, id);
 }
 
-async function imagesToURLs(image_files) {
-    let images_arr = Array.prototype.slice.call(image_files);
-    try {
-        const arr = await Promise.all(images_arr.map(image => imagesToURLsHelper(image)));
-        return arr;
-    } catch (err) {
-        console.log(err);
-    }  
+export function makeImages(base64Images) {
+    const final_images = [];
+    for (const url of base64Images) {
+        const image = new Image();
+        image.src = url;
+        final_images.push(image);
+    }
+    return final_images;
 }
 
-export async function goToHomepage(product, image_files) {
-    const urls_arr = await imagesToURLs(image_files);
-    localStorage.setItem("product", JSON.stringify(product));
-    localStorage.setItem("image_files", JSON.stringify(urls_arr));
-    document.location = "/homepage";
-}
+export async function addHomepageListing(num) {
+    const product = await getMostRecentProduct();
 
-let cur_num = 1;
-
-function addHomepageListing(product, image_nodes) {
-    const grid_row_wrapper = document.getElementById("real_row");
+    const grid_row_wrapper = document.getElementById("row");
     const listing_wrapper = document.createElement("div");
     listing_wrapper.setAttribute("class", "col-md-3 img-thumbnail");
-    listing_wrapper.setAttribute("id", product.id);
+    listing_wrapper.setAttribute("id", product._id.toString());
 
     const carousel = document.createElement("div");
-    carousel.setAttribute("id", `carouselFade${cur_num}`);
+    carousel.setAttribute("id", `carouselFade${num}`);
     carousel.setAttribute("class", "carousel slide carousel-fade img-fluid"); 
     carousel.setAttribute("data-ride", "carousel");
     listing_wrapper.appendChild(carousel);
@@ -62,6 +43,8 @@ function addHomepageListing(product, image_nodes) {
     const inner_carousel = document.createElement("div");
     inner_carousel.setAttribute("class", "carousel-inner");
     carousel.appendChild(inner_carousel);
+
+    const image_nodes = makeImages(product.images);
 
     for (let i = 0; i < image_nodes.length; i++) {
         const img_node = image_nodes[i];
@@ -77,10 +60,8 @@ function addHomepageListing(product, image_nodes) {
         inner_carousel.appendChild(cur_img);
     }
 
-    const prev_button = makeButton("carousel-control-prev", "carousel-control-prev-icon", "prev", "Previous", cur_num);
-    const next_button = makeButton("carousel-control-next", "carousel-control-next-icon", "next", "Next", cur_num);
-
-    cur_num++;
+    const prev_button = makeButton("carousel-control-prev", "carousel-control-prev-icon", "prev", "Previous", num);
+    const next_button = makeButton("carousel-control-next", "carousel-control-next-icon", "next", "Next", num);
 
     carousel.appendChild(prev_button);
     carousel.appendChild(next_button);
@@ -102,7 +83,9 @@ function addHomepageListing(product, image_nodes) {
 
     grid_row_wrapper.appendChild(listing_wrapper);
     let listings = grid_row_wrapper.innerHTML;
-    localStorage.setItem("homepage_listings", listings);
+
+    // after all is done, add the html for this listing to the database.
+    await addToDatabase(listing_wrapper.outerHTML, product._id);
 }
 
 function makeButton(c1, c2, ds, text, cur_num) {
@@ -125,13 +108,4 @@ function makeButton(c1, c2, ds, text, cur_num) {
     button.appendChild(text_stuff);
 
     return button;
-}
-
-function reload() {
-    const grid_row_wrapper = document.getElementById("real_row");
-    const contents = localStorage.getItem("homepage_listings");
-    if (contents !== null)
-        grid_row_wrapper.innerHTML = contents;
-    else
-        grid_row_wrapper.innerHTML = "";
 }
