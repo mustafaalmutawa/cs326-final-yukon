@@ -24,7 +24,7 @@ class Server {
         this.app = express();
         this.app.use('/', express.static('./client'));
         this.app.use(expressSession(sessionConfig));
-        this.app.use(express.json());
+        this.app.use(express.json({limit: '100mb'}));
         this.app.use(express.urlencoded({ extended: true }));
         this.app.set('view engine', 'ejs');
         auth.configure(this.app);
@@ -50,11 +50,31 @@ class Server {
             response.render('product.ejs', res);
         });
 
+        this.app.get('/product/recent', async (request, response) => {
+            const res = await self.db.getMostRecentProduct();
+            response.json(res);
+        });
+
         this.app.post('/product/new', async (req, res) => {
             //returned id is the string portion of the ObjectId
             const id = await this.db.createProduct(req.body);
             res.json({id: id});    
         });
+
+        this.app.post('/product/html', async (req, res) => {
+            const data = req.body;
+            await this.db.addProductHTML(data.id, data.html);   
+        });
+
+        this.app.get('/product/all', async (request, response) => {
+            const res = await self.db.getAllHTMLListings();
+            response.json(res);
+        })
+
+        this.app.get('/products', async (request, response) => {
+            const res = await self.db.getAllProducts();
+            response.json(res);
+        })
 
         this.app.post('/product/buy', async (request, response) => {
         });
