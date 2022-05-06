@@ -1,19 +1,24 @@
-import {addHTMLToDB, getMostRecentProduct, loadListings, getAllProducts} from './crud.js'
+import * as crud from './crud.js'
 
 $(document).ready(async function() {
     const grid_row_wrapper = document.getElementById("row");
-    const products = await getAllProducts();
-    const listingsHTML = await loadListings();
+    const products = await crud.getAllProducts();
+    const listingsHTML = await crud.loadListings();
     for (const obj of listingsHTML) {
-        grid_row_wrapper.innerHTML += obj.html;
+        const listingContainer = document.createElement("div");
+        listingContainer.innerHTML = obj.html;
+        listingContainer.addEventListener("click", function() {
+            window.location.href = obj.url;
+        })
+        grid_row_wrapper.appendChild(listingContainer);
     }
     if (products.length > listingsHTML.length) {
         await addHomepageListing(products.length);
     }   
 });
 
-async function addToDatabase(productHTML, id) {
-    await addHTMLToDB(productHTML, id);
+async function addToDatabase(productHTML, id, productURL) {
+    await crud.addHTMLToDB(productHTML, id, productURL);
 }
 
 export function makeImages(base64Images) {
@@ -27,7 +32,7 @@ export function makeImages(base64Images) {
 }
 
 export async function addHomepageListing(num) {
-    const product = await getMostRecentProduct();
+    const product = await crud.getMostRecentProduct();
 
     const grid_row_wrapper = document.getElementById("row");
     const listing_wrapper = document.createElement("div");
@@ -82,10 +87,14 @@ export async function addHomepageListing(num) {
     listing_wrapper.appendChild(h2);
 
     grid_row_wrapper.appendChild(listing_wrapper);
-    let listings = grid_row_wrapper.innerHTML;
+
+    const productURL = await crud.getProduct(product._id.toString());
+    listing_wrapper.addEventListener("click", async function() {
+        window.location.href = productURL;
+    });
 
     // after all is done, add the html for this listing to the database.
-    await addToDatabase(listing_wrapper.outerHTML, product._id);
+    await addToDatabase(listing_wrapper.outerHTML, product._id, productURL);
 }
 
 function makeButton(c1, c2, ds, text, cur_num) {
