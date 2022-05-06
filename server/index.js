@@ -63,7 +63,7 @@ class Server {
 
         this.app.post('/product/html', async (req, res) => {
             const data = req.body;
-            await this.db.addProductHTML(data.id, data.html);   
+            await this.db.addProductHTML(data.id, data.html, data.url);   
         });
 
         this.app.get('/product/all', async (request, response) => {
