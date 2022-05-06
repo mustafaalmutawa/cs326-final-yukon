@@ -1,5 +1,4 @@
 import * as crud from './crud.js';
-import { makeImages } from './Homepage.js';
 
 const register_button = document.getElementById("register_button");
 const login_button = document.getElementById('login_button');
