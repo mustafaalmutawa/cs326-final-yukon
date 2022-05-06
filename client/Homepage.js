@@ -5,12 +5,19 @@ $(document).ready(async function() {
     const products = await crud.getAllProducts();
     const listingsHTML = await crud.loadListings();
     for (const obj of listingsHTML) {
-        const listingContainer = document.createElement("div");
+        /*const listingContainer = document.createElement("div");
         listingContainer.innerHTML = obj.html;
         listingContainer.addEventListener("click", function() {
             window.location.href = obj.url;
+        })*/
+        //grid_row_wrapper.appendChild(listingContainer);
+        grid_row_wrapper.innerHTML += obj.html;
+    }
+    const listings = document.getElementsByClassName("col-md-3");
+    for (let i = 0; i < listings.length; i++) {
+        listings[i].addEventListener("click", function() {
+            window.location.href = listingsHTML[i].url;
         })
-        grid_row_wrapper.appendChild(listingContainer);
     }
     if (products.length > listingsHTML.length) {
         await addHomepageListing(products.length);
