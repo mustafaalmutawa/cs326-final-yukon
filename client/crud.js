@@ -69,6 +69,18 @@ export async function getProduct() {
   }
 }
 
+export async function getProductById(id) {
+  try {
+    const response = await fetch(`/product?id=${id}`, {
+      method: 'GET',
+    });
+    const data = await response.json();
+    return data;
+  } catch (err) {
+    console.log(err);
+  }
+}
+
 export async function getAllProducts() {
     try {
       const response = await fetch(`/products`, {
