@@ -135,7 +135,7 @@ An endpoint via POST that a user will use to “buy” items. The data for check
 <strong>/product/update</strong>
 This PUT endpoint allows the user to update an existing product listing. The updated information is sent through the body of the request as a JSON object.
 
-<strong>/product/delete?id=1234</strong>
+<strong>/product/delete?id=</strong>
 This endpoint uses the DELETE method to delete the product with the unique product id.
 
 <strong>/user</strong>
