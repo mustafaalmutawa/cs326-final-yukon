@@ -74,7 +74,7 @@ This endpoint uses the GET request to retrieve the Homepage HTML page
 This endpoints uses the GET request to the Create Listing HTML page
 
 # Authentication/Authorization
-
+For authentication we used passport to manage registration and login flows. When a user registers, they are appended to the object in the users class. Then, user logins are checked against this. Only logged in users can access their user profile page. We intended to merge Users.js with the existing logic from Database.js so that users would be stored in MongoDB, but did not have time. 
 
 # Division of Labor
 Alex: Mustafa and I created the MongoDB database, and used the code from lecture to link it into our application. We all then wrote one of the CRUD routes to connect our app to the database. I added the read route to mongoDB that allows the app to retrieve a user or product. Then, I helped Nitish/Taytana debug the authentication so that a user could login and be successfully redirected to a protected page. Finally, I worked to add EJS into our project to dynamically render a user page or a product page based on information parsed directly from our database. The front end homepage Tatyana wrote submits a GET request to my EJS product page like /product?id=1234 and the page is automatically rendered. Similarly, after a user logs in, EJS renders there name on the user profile. 
