@@ -69,6 +69,58 @@ export async function getProduct() {
   }
 }
 
+export async function getAllProducts() {
+    try {
+      const response = await fetch(`/products`, {
+        method: 'GET',
+      });
+      const data = await response.json();
+      return data;
+    } catch (err) {
+      console.log(err);
+    }
+  }
+
+export async function getMostRecentProduct() {
+    try {
+      const response = await fetch(`/product/recent`, {
+        method: 'GET',
+      });
+      const data = await response.json();
+      return data;
+    } catch (err) {
+      console.log(err);
+    }
+}
+
+export async function addHTMLToDB(productHTML, id) {
+    try {
+        const response = await fetch(`/product/html`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({id: id, html: productHTML})
+        });
+      const data = await response.json();
+      return data;
+    } catch (err) {
+      console.log(err);
+    }
+}
+
+export async function loadListings() {
+    try {
+        const response = await fetch(`/product/all`, {
+            method: 'GET'
+        });
+      const data = await response.json();
+      return data;
+    } catch (err) {
+      console.log(err);
+    }
+}
+
 export async function updateName(name) {
   try {
     const response = await fetch(`/user/update`, {
@@ -79,6 +131,7 @@ export async function updateName(name) {
     console.log(err);
   }
 }
+
 export async function deleteUser() {
   const response = await fetch(`/user/delete`, {
     method: 'DELETE',
@@ -88,4 +141,4 @@ export async function deleteUser() {
   });
   const data = await response.json();
   return data;
-  }
+}
