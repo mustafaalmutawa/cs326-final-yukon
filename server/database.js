@@ -23,6 +23,7 @@ export class Database {
     async init() {
         this.products = this.db.collection('products');
         this.users = this.db.collection('users');
+        this.listingsHTML = this.db.collection('listingsHTML');
     }
 
     // Close the pool.
@@ -80,6 +81,16 @@ export class Database {
 
     }
 
+    async addProductHTML(id, html) {
+        const res = await this.listingsHTML.insertOne({_id: ObjectId(id), html: html});
+        return res;
+    }
+
+    async getMostRecentProduct() {
+        const res = await this.getAllProducts();
+        return res[res.length - 1];
+    }
+
     async getAllProducts() {
         const res = await this.products.find({}).toArray();
         return res;
@@ -87,6 +98,11 @@ export class Database {
 
     async getAllUsers() {
         const res = await this.users.find({}).toArray();
+        return res;
+    }
+
+    async getAllHTMLListings() {
+        const res = await this.listingsHTML.find({}).toArray();
         return res;
     }
 }
