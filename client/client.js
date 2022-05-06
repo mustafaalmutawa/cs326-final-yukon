@@ -15,7 +15,7 @@ let productToUpdate = 0;
 if (delete_button !== null) {
   delete_button.addEventListener('click', async(e) => {
   await crud.deleteUser();
-  window.location.href = "register.html";
+  window.location = "/register";
 })
 }
 
@@ -47,7 +47,7 @@ if (listing_button !== null) {
     const payment = Array.from(selectedPayment).map(o => o.value);
 
     const product_data = await crud.createProduct(itemName, price, category, condition, description, images, location, shipping, shippingPrice, pickup, payment);
-    window.location.href = "user_profile.html";
+    window.location.href = "/user";
   });
 }
 
@@ -64,7 +64,7 @@ if (updateProduct_buttons != null) {
     button.addEventListener('click', async (e) => {
       productToUpdate = e.target.id;
       await crud.getUpdateListingPage();
-      window.location.href = "update_listing.html";
+      window.location = "/listing/update";
     });
   }
 }
@@ -95,7 +95,7 @@ if (updateListing_button !== null) {
 
     const selectedPayment = document.getElementById("pPayement").selectedOptions
     const payment = Array.from(selectedPayment).map(o => o.value);
-    await crud.updateProduct(productToUpdate, itemName, price, category, condition, description, images, location, shipping, shippingPrice, pickup, payment)
-    window.location.href = "user_profile.html";
+    window.location = "/user";
+    await crud.updateProduct(productToUpdate, itemName, price, category, condition, description, images, location, shipping, shippingPrice, pickup, payment);
   });
 }

@@ -72,7 +72,6 @@ class Server {
         });
 
         this.app.put('/product/update', async (request, response) => {
-            response.status(200).json({sucess: 'updated'});
             const {id, itemName, price, category, condition, description, 
                 images, location, shipping, shippingPrice, pickup, payment} = request.body;
             const data = await self.db.updateProduct(id, itemName, price, category, condition, description, 

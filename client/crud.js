@@ -98,7 +98,7 @@ export async function updateProduct(productToUpdate, itemName, price, category, 
   "location": location, "shipping": shipping, "shippingPrice": shippingPrice,
   "pickup": pickup, "payment": payment}
 
-  const response = await fetch(`/product/update`,{
+  const response = await fetch(`/product/update`, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',
