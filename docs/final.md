@@ -5,7 +5,7 @@
 ## Semester: Spring 2022
 
 # Overview
-Our app, USell, is platform for selling and buying all types of stuff. Unlike other selling/buying apps, USell is designed to specifically serve UMass students. It offers numerous features that make selling/buying easy for students at UMass. For example, users can filter listed produts by residential area or availability of shipping.
+Our app, USell, is a platform for selling and buying all types of stuff. Unlike other selling/buying apps, USell is designed to specifically serve UMass students. It offers numerous features that make selling/buying easy for students at UMass. For example, users can filter listed produts by residential area or availability of shipping.
 
 No selling/buying apps currently exist that exclusively serve UMass students, making USell a unique idea. Also, the app can potentially be extended to other college and university campuses, serving as a the only student-oriented selling/buying platform.
 
@@ -20,6 +20,16 @@ Tatyana Edozie: @yanaedo
 Nitish Bodicharla: @nbodicharla
 
 # User Interface
+
+<img width="1437" alt="sk__rmbillede_2022-05-06_kl _13 38 50" src="https://user-images.githubusercontent.com/40669187/167196835-334d4ebc-09f8-4f32-adc2-42366cf0743b.png">
+
+<img width="1301" alt="sk__rmbillede_2022-05-06_kl _13 41 03" src="https://user-images.githubusercontent.com/40669187/167196881-778cda62-afe0-4d5c-b7e6-d1390cc95de0.png">
+
+<img width="1440" alt="sk__rmbillede_2022-05-06_kl _13 39 01" src="https://user-images.githubusercontent.com/40669187/167196970-20f3e6f4-3ac5-467d-b87c-1d3f1e34602c.png">
+
+<img width="1440" alt="sk__rmbillede_2022-05-06_kl _13 39 20" src="https://user-images.githubusercontent.com/40669187/167197020-457bee6e-bcf2-457e-88e8-2f16980c7c67.png">
+
+<img width="1440" alt="sk__rmbillede_2022-05-06_kl _13 39 13" src="https://user-images.githubusercontent.com/40669187/167197040-c8b70127-40f5-4eec-8465-184ecc384993.png">
 
 # API
 * login(username, password)
