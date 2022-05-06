@@ -5,12 +5,6 @@ $(document).ready(async function() {
     const products = await crud.getAllProducts();
     const listingsHTML = await crud.loadListings();
     for (const obj of listingsHTML) {
-        /*const listingContainer = document.createElement("div");
-        listingContainer.innerHTML = obj.html;
-        listingContainer.addEventListener("click", function() {
-            window.location.href = obj.url;
-        })*/
-        //grid_row_wrapper.appendChild(listingContainer);
         grid_row_wrapper.innerHTML += obj.html;
     }
     const listings = document.getElementsByClassName("col-md-3");
