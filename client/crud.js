@@ -57,16 +57,15 @@ export async function getUserProfile() {
   }
 }
 
-export async function getProduct() {
-  try {
-    const response = await fetch(`/product`, {
-      method: 'GET',
-    });
-    const data = await response.json();
-    return data;
-  } catch (err) {
-    console.log(err);
-  }
+export async function getProduct(id) {
+    try {
+      const response = await fetch(`/product?id=${id}`, {
+        method: 'GET',
+      });
+      return response.url;
+    } catch (err) {
+      console.log(err);
+    }
 }
 
 export async function getAllProducts() {
@@ -79,7 +78,7 @@ export async function getAllProducts() {
     } catch (err) {
       console.log(err);
     }
-  }
+}
 
 export async function getMostRecentProduct() {
     try {
@@ -93,14 +92,14 @@ export async function getMostRecentProduct() {
     }
 }
 
-export async function addHTMLToDB(productHTML, id) {
+export async function addHTMLToDB(productHTML, id, productURL) {
     try {
         const response = await fetch(`/product/html`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify({id: id, html: productHTML})
+            body: JSON.stringify({id: id, url: productURL, html: productHTML})
         });
       const data = await response.json();
       return data;
