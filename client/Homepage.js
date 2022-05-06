@@ -36,7 +36,7 @@ export async function addHomepageListing(num) {
 
     const grid_row_wrapper = document.getElementById("row");
     const listing_wrapper = document.createElement("div");
-    listing_wrapper.setAttribute("class", "col-md-3 img-thumbnail");
+    listing_wrapper.setAttribute("class", "product col-md-3 img-thumbnail");
     listing_wrapper.setAttribute("id", product._id.toString());
 
     const carousel = document.createElement("div");

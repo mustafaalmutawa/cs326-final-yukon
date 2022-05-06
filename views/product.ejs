@@ -103,31 +103,33 @@
                 <tbody>
                   <tr>
                     <th scope="row">Condition</th>
-                    <td><%= condition %></td>
+                    <td><%= typeof condition !== 'undefined' ? condition : '' %></td>
                   </tr>
                   <tr>
                     <th scope="row">Category</th>
-                    <td><%= category %></td>
+                    <td><%= typeof category !== 'undefined' ? category : '' %></td>
                   </tr>
                   <tr>
                     <th scope="row">Location</th>
-                    <td><%= location %></td>
+                    <td><%= typeof location !== 'undefined' ? location : '' %></td>
                   </tr>
                   <tr>
                     <th scope="row">Preferred Payment</th>
-                    <td><%= payment %></td>
+                    <td><%= typeof payment !== 'undefined' ? payment : '' %></td>
                   </tr>
                   <tr>
                     <th scope="row">Shipping</th>
-                    <td>$<%= shippingPrice %></td>
+                    <td>$<%= typeof shippingPrice !== 'undefined' ? shippingPrice : '' %></td>
                   </tr>
                   <tr>
                     <th scope="row">Pickup?</th>
                     <td>
-                      <% if (pickup) { %>
-                        <%= 'Yes' %>
-                      <% } else { %>
-                        <%= 'No' %>
+                      <% if (typeof pickup !== 'undefined') { %>
+                        <% if (pickup) { %>
+                          <%= 'Yes' %>
+                        <% } else { %>
+                          <%= 'No' %>
+                        <% } %>
                       <% } %>
                     </td>
                   </tr>
@@ -140,8 +142,8 @@
           <div class="product-heading">
             <i>New! Posted 5 minutes ago.</i>
             <br>
-            <span class="badge badge-pill badge-primary"><%= payment %></span>
-            <span class="badge badge-pill badge-success">$<%= shippingPrice %> Shipping</span>
+            <span class="badge badge-pill badge-primary"><%= typeof payment !== 'undefined' ? payment : '' %></span>
+            <span class="badge badge-pill badge-success">$<%= typeof shippingPrice !== 'undefined' ? shippingPrice : '' %> Shipping</span>
           </div>
           <div class="product-title">
             <h4 id="price">$<%= price %></h4>
@@ -155,7 +157,7 @@
             <h5>Description</h5>
             <hr>
             <p id="description">
-              <%= description %>
+              <%= typeof description !== 'undefined' ? description : '' %>
             </p>
           </div>
         </div>
