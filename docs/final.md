@@ -7,9 +7,9 @@
 <br>
 
 # Overview
-Our app, USell, is a platform for selling and buying all types of stuff. Unlike other selling/buying apps, USell is designed to specifically serve UMass students. It offers numerous features that make selling/buying easy for students at UMass. For example, users can filter listed produts by residential area or availability of shipping.
+Our app, USell, is a platform for selling and buying all types of items. Unlike other selling/buying apps, USell is designed to specifically serve UMass students. It offers numerous features that make selling/buying easy for students at UMass. For example, users can filter listed produts by residential area or availability of shipping.
 
-No selling/buying apps currently exist that exclusively serve UMass students, making USell a unique idea. Also, the app can potentially be extended to other college and university campuses, serving as a the only student-oriented selling/buying platform.
+No selling/buying apps currently exist that exclusively serve UMass students, making USell a unique idea. The app can potentially be extended to other college and university campuses, serving as the only student-oriented selling/buying platform.
 
 <br>
 
@@ -28,21 +28,21 @@ Nitish Bodicharla: @nbodicharla
 # User Interface
 ### Homepage
 <img width="1437" alt="sk__rmbillede_2022-05-06_kl _13 38 50" src="https://user-images.githubusercontent.com/40669187/167196835-334d4ebc-09f8-4f32-adc2-42366cf0743b.png">
-The homepage shows all the product listings. It's the main landing pge of our app. Additionally. The left side contains filtering options. The navigation bar on the top has links to add a listing, login, and join.
+The homepage shows all of the currently added product listings. It's the main landing page of our app. The left side contains filtering options. The navigation bar on the top has links to add a listing, login, and join.
 
 <br>
 
 ### User Profile
 <img width="1301" alt="sk__rmbillede_2022-05-06_kl _13 41 03" src="https://user-images.githubusercontent.com/40669187/167196881-778cda62-afe0-4d5c-b7e6-d1390cc95de0.png">
 
-The user profile page shows the user's own listings as well as their rating. Additionally, it allows the user to make updates to their listings, update the profile name, and delete the account.
+The user profile page shows the user's own listings as well as their rating. Additionally, it allows the user to make updates to their listings, update the profile name, and delete their account.
 
 <br>
 
 ### Product Page
 ![Screen Shot 2022-05-06 at 21 53 12](https://user-images.githubusercontent.com/40669187/167201012-8a0d9247-6d0b-4762-97e4-87bab0c212e6.png)
 
-The product page shows the product's information. This includes the product's images and description as well as details like its condition, the preferred payment method, availavility of shipping, etc.
+The product page shows information about the selected product. This includes the product's images and description as well as details like its condition, the preferred payment method, availavility of shipping, etc.
 
 <br>
 
@@ -196,3 +196,14 @@ Tatyana: My primary focus throughout the project was the homepage. I worked on t
 # Conclusion
 Overall, I am happy with what we completed on this project. Our UI looks great and our application is mostly functional. Learning to piece together the front end, with a database and deploy to Heroku was a very formative experience. If we could have done it again, it would have been useful to limit our scope as we took on a pretty signifigant sized project. I think this made it difficult to finalize all the features we initially intended to have. For example, although we wrote all the database logic, and our products dyanmically render, we didn't budget enough time to implement search from our homepage, or link auth to mongo. Overall, I am very happy with our team's hardwork and very proud of what we accomplished. Working as a team isn't always easy, and I think we did a great job combining async work with pretty regular weekly team meetups.
 
+<br>
+
+# Grading Rubric
+* 90-100 <br>
+Application UI looks great, pages load dynamically from the server, local users can be created and logged in to the private route /user without issue, code is clean and well maintained. Moving towards a well formed and fully functional app. App was deployed to Heroku correctly and runs smoothly. Final video contains all elements that were asked for. Topics were discussed and demonstrations were shown in an organized and well-thought-out manner.
+
+* 80-90 <br>
+App is mostly functional, some errors are present. Overall most things work flawlessly with some minor bugs or issues. Dynamic product loading faces issues, but overall application is well formed. Moving towards a good app. App was deployed to Heroku but faces minor bugs. Final video contains most elements that were asked for. Topic discussions and demontrations could have been more ironed out, but the main ideas were present. 
+
+* 70-80 <br>
+App has significant issues, code base is disorganized, UI faces structural issues. The app is overall good and moving towards completion but lacking proper execution. App deployment to Heroku faces multiple issues. Final video contains some elements that were asked for. Topic discussions and demonsrations were very disorganized and hard to follow.
